@@ -1,0 +1,19 @@
+{
+  "name": "safari-backend",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node --watch server.js",
+    "start": "node server.js",
+    "seed:activities": "node seed/activities.seed.js",
+    "seed:meals": "node seed/meals.seed.js",
+    "seed:safaris": "node seed/safaris.seed.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "mongoose": "^8.7.1"
+  }
+}
