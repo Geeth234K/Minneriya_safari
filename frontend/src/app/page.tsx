@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Hero from "@/components/ui/Hero";
 import SectionTitle from "@/components/ui/SectionTitle";
-import SafariCard from "@/components/ui/SafariCard";
 import ActivityCard from "@/components/ui/ActivityCard";
 import RoomCard from "@/components/ui/RoomCard";
 import MealCard from "@/components/ui/MealCard";
@@ -41,8 +40,8 @@ export default async function HomePage() {
         title="Discover the Wild Heart of Minneriya"
         subtitle="Unforgettable jeep safaris, authentic village experiences, traditional cuisine, and serene accommodation — all in the heart of Sri Lanka's wildlife paradise."
         badge="Minneriya Safari"
-        backgroundImage="https://images.unsplash.com/photo-1564760055775-d63b17a55c44?auto=format&fit=crop&w=2000&q=80"
-        primaryCta={{ label: "Explore Safari", href: "/safari" }}
+        backgroundImage="/home-hero.jpg"
+        primaryCta={{ label: "Explore Activities", href: "/activities" }}
         secondaryCta={{ label: "Book Your Stay", href: "/rooms/reserve" }}
         highlights={["Wildlife Safaris", "Village Tours", "Local Cuisine", "Cozy Stays"]}
       />
@@ -60,43 +59,23 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ── Safari Highlights ── */}
-      <section className="section-padding bg-[var(--color-bg-alt)]">
-        <div className="section-container">
-          <SectionTitle
-            eyebrow="Our Experiences"
-            title="Safari & Adventures"
-            description="Explore the wild landscapes of Minneriya with our curated safari packages."
-          />
-          {activeSafaris.length > 0 ? (
-            <div className="max-w-3xl mx-auto">
-              {activeSafaris.map((safari) => (
-                <SafariCard key={safari._id} safari={safari} featured />
-              ))}
-            </div>
-          ) : (
-            <EmptyState message="Safari packages coming soon." />
-          )}
-        </div>
-      </section>
-
-      {/* ── Activities (Village Tour, Local Food) ── */}
+      {/* ── Our Activities ── */}
       {activities.length > 0 && (
-        <section className="section-padding bg-[var(--color-bg)]">
+        <section className="section-padding bg-[var(--color-bg-alt)]">
           <div className="section-container">
             <SectionTitle
-              eyebrow="More Experiences"
-              title="Village Tours & Local Food"
-              description="Go beyond the safari and immerse yourself in authentic Sri Lankan village life and cuisine."
+              eyebrow="Our Experiences"
+              title="Activities & Adventures"
+              description="Explore safaris, village tours, and local cuisine — all crafted for an unforgettable Minneriya experience."
             />
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {activities.map((activity) => {
                 const slug =
                   activity.title.toLowerCase().includes("village")
-                    ? "/village-tour"
+                    ? "/activities/village-tour"
                     : activity.title.toLowerCase().includes("food")
-                    ? "/local-food"
-                    : "/safari";
+                    ? "/activities/local-food"
+                    : "/activities/safari";
                 return (
                   <ActivityCard
                     key={activity._id}
@@ -105,6 +84,14 @@ export default async function HomePage() {
                   />
                 );
               })}
+            </div>
+            <div className="text-center mt-8">
+              <Link
+                href="/activities"
+                className="btn btn-primary"
+              >
+                View All Activities
+              </Link>
             </div>
           </div>
         </section>

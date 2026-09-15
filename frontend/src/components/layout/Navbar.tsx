@@ -6,9 +6,7 @@ import Link from "next/link";
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
-  { href: "/safari", label: "Safari" },
-  { href: "/village-tour", label: "Village Tour" },
-  { href: "/local-food", label: "Local Food" },
+  { href: "/activities", label: "Activities" },
   { href: "/rooms", label: "Rooms" },
   { href: "/contact", label: "Contact" },
 ];

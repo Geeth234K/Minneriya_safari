@@ -2,9 +2,10 @@ import Link from "next/link";
 
 const quickLinks = [
   { href: "/about", label: "About Us" },
-  { href: "/safari", label: "Safari Experience" },
-  { href: "/village-tour", label: "Village Tour" },
-  { href: "/local-food", label: "Local Food" },
+  { href: "/activities", label: "Activities" },
+  { href: "/activities/safari", label: "Safari Experience" },
+  { href: "/activities/village-tour", label: "Village Tour" },
+  { href: "/activities/local-food", label: "Local Food" },
   { href: "/rooms", label: "Accommodation" },
   { href: "/contact", label: "Contact" },
 ];

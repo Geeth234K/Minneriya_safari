@@ -31,7 +31,7 @@ export default async function AboutPage() {
         title="Discover the Wonder of Minneriya"
         subtitle="Minneriya is where royal history, lush jungles, wildlife corridors, and safari adventures blend into an unforgettable journey."
         badge="About Minneriya Safari"
-        backgroundImage="https://images.unsplash.com/photo-1564760055775-d63b17a55c44?auto=format&fit=crop&w=2000&q=80"
+        backgroundImage="/about-hero.jpg"
         highlights={["UNESCO Heritage", "Wildlife Safaris", "Cultural Immersion", "Luxury Escapes"]}
         compact
       />

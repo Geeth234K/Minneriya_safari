@@ -7,14 +7,12 @@ interface ActivityCardProps {
 }
 
 export default function ActivityCard({ activity, linkTo }: ActivityCardProps) {
-  const Wrapper = linkTo ? Link : "div";
-  const wrapperProps = linkTo ? { href: linkTo } : {};
+  const className =
+    "group block bg-[var(--color-surface)] rounded-xl overflow-hidden border border-[var(--color-border)] hover:shadow-lg transition-all duration-300";
 
-  return (
-    <Wrapper
-      {...(wrapperProps as React.ComponentProps<typeof Link>)}
-      className="group block bg-[var(--color-surface)] rounded-xl overflow-hidden border border-[var(--color-border)] hover:shadow-lg transition-all duration-300"
-    >
+  const content = (
+    <>
+
       {/* Image / themed header */}
       <div
         className="h-44 sm:h-48 relative flex items-center justify-center"
@@ -68,6 +66,16 @@ export default function ActivityCard({ activity, linkTo }: ActivityCardProps) {
           )}
         </div>
       </div>
-    </Wrapper>
+    </>
   );
+
+  if (linkTo) {
+    return (
+      <Link href={linkTo} className={className}>
+        {content}
+      </Link>
+    );
+  }
+
+  return <div className={className}>{content}</div>;
 }

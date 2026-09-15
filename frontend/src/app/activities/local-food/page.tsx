@@ -39,6 +39,21 @@ export default async function LocalFoodPage() {
 
   return (
     <>
+      {/* Back link */}
+      <div className="pt-20 pb-2 bg-[var(--color-bg)]">
+        <div className="section-container">
+          <Link
+            href="/activities"
+            className="inline-flex items-center gap-1 text-sm text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors"
+          >
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+            All Activities
+          </Link>
+        </div>
+      </div>
+
       <Hero
         title="Authentic Sri Lankan Cuisine"
         subtitle={
