@@ -40,7 +40,7 @@ export default async function HomePage() {
         title="Discover the Wild Heart of Minneriya"
         subtitle="Unforgettable jeep safaris, authentic village experiences, traditional cuisine, and serene accommodation — all in the heart of Sri Lanka's wildlife paradise."
         badge="Minneriya Safari"
-        backgroundImage="/home-hero.jpg"
+        backgroundImage="/home-hero.png"
         primaryCta={{ label: "Explore Activities", href: "/activities" }}
         secondaryCta={{ label: "Book Your Stay", href: "/rooms/reserve" }}
         highlights={["Wildlife Safaris", "Village Tours", "Local Cuisine", "Cozy Stays"]}
