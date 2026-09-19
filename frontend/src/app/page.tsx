@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Hero from "@/components/ui/Hero";
 import SectionTitle from "@/components/ui/SectionTitle";
-import ActivityCard from "@/components/ui/ActivityCard";
+import ActivitiesBentoGrid from "@/components/home/ActivitiesBentoGrid";
 import RoomCard from "@/components/ui/RoomCard";
 import MealCard from "@/components/ui/MealCard";
 import { EmptyState } from "@/components/ui/States";
@@ -30,7 +30,6 @@ async function fetchData() {
 export default async function HomePage() {
   const { safaris, activities, rooms, meals } = await fetchData();
 
-  const activeSafaris = safaris.filter((s) => s.isActive);
   const activeMeals = meals.filter((m) => m.isActive);
 
   return (
@@ -59,43 +58,8 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ── Our Activities ── */}
-      {activities.length > 0 && (
-        <section className="section-padding bg-[var(--color-bg-alt)]">
-          <div className="section-container">
-            <SectionTitle
-              eyebrow="Our Experiences"
-              title="Activities & Adventures"
-              description="Explore safaris, village tours, and local cuisine — all crafted for an unforgettable Minneriya experience."
-            />
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {activities.map((activity) => {
-                const slug =
-                  activity.title.toLowerCase().includes("village")
-                    ? "/activities/village-tour"
-                    : activity.title.toLowerCase().includes("food")
-                    ? "/activities/local-food"
-                    : "/activities/safari";
-                return (
-                  <ActivityCard
-                    key={activity._id}
-                    activity={activity}
-                    linkTo={slug}
-                  />
-                );
-              })}
-            </div>
-            <div className="text-center mt-8">
-              <Link
-                href="/activities"
-                className="btn btn-primary"
-              >
-                View All Activities
-              </Link>
-            </div>
-          </div>
-        </section>
-      )}
+      {/* ── Our Activities (Modern Bento Grid with Videos & Imagery) ── */}
+      <ActivitiesBentoGrid activities={activities} safaris={safaris} />
 
       {/* ── Meals ── */}
       {activeMeals.length > 0 && (
