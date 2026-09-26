@@ -1,49 +1,31 @@
 import Link from "next/link";
-import Hero from "@/components/ui/Hero";
+import HeroFullscreen from "@/components/home/HeroFullscreen";
 import SectionTitle from "@/components/ui/SectionTitle";
 import ActivitiesBentoGrid from "@/components/home/ActivitiesBentoGrid";
-import RoomCard from "@/components/ui/RoomCard";
-import MealCard from "@/components/ui/MealCard";
-import { EmptyState } from "@/components/ui/States";
+import WhySafariWithUs from "@/components/home/WhySafariWithUs";
 import { getSafaris } from "@/services/safaris";
 import { getActivities } from "@/services/activities";
-import { getRooms } from "@/services/rooms";
-import { getMeals } from "@/services/meals";
-import type { Safari, Activity, Room, Meal } from "@/types";
+import type { Safari, Activity } from "@/types";
 
 async function fetchData() {
-  const [safaris, activities, rooms, meals] = await Promise.allSettled([
+  const [safaris, activities] = await Promise.allSettled([
     getSafaris(),
     getActivities(),
-    getRooms(),
-    getMeals(),
   ]);
 
   return {
     safaris: safaris.status === "fulfilled" ? safaris.value : ([] as Safari[]),
     activities: activities.status === "fulfilled" ? activities.value : ([] as Activity[]),
-    rooms: rooms.status === "fulfilled" ? rooms.value : ([] as Room[]),
-    meals: meals.status === "fulfilled" ? meals.value : ([] as Meal[]),
   };
 }
 
 export default async function HomePage() {
-  const { safaris, activities, rooms, meals } = await fetchData();
-
-  const activeMeals = meals.filter((m) => m.isActive);
+  const { safaris, activities } = await fetchData();
 
   return (
     <>
-      {/* ── Hero ── */}
-      <Hero
-        title="Discover the Wild Heart of Minneriya"
-        subtitle="Unforgettable jeep safaris, authentic village experiences, traditional cuisine, and serene accommodation — all in the heart of Sri Lanka's wildlife paradise."
-        badge="Minneriya Safari"
-        backgroundImage="/home-hero.png"
-        primaryCta={{ label: "Explore Activities", href: "/activities" }}
-        secondaryCta={{ label: "Book Your Stay", href: "/rooms/reserve" }}
-        highlights={["Wildlife Safaris", "Village Tours", "Local Cuisine", "Cozy Stays"]}
-      />
+      {/* ── Hero Fullscreen ── */}
+      <HeroFullscreen />
 
       {/* ── Introduction ── */}
       <section className="section-padding bg-[var(--color-bg)]">
@@ -58,46 +40,11 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ── Our Activities (Modern Bento Grid with Videos & Imagery) ── */}
+      {/* ── Our Experiences (Modern Bento Grid with Videos & Imagery) ── */}
       <ActivitiesBentoGrid activities={activities} safaris={safaris} />
 
-      {/* ── Meals ── */}
-      {activeMeals.length > 0 && (
-        <section className="section-padding bg-[var(--color-bg-alt)]">
-          <div className="section-container">
-            <SectionTitle
-              eyebrow="Dining"
-              title="Home-Cooked Sri Lankan Meals"
-              description="Taste the authentic flavors of Sri Lanka with freshly prepared meals made from local ingredients."
-            />
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
-              {activeMeals.map((meal) => (
-                <MealCard key={meal._id} meal={meal} />
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* ── Accommodation ── */}
-      <section className="section-padding bg-[var(--color-bg)]">
-        <div className="section-container">
-          <SectionTitle
-            eyebrow="Stay With Us"
-            title="Comfortable Accommodation"
-            description="Rest and recharge in our cozy room, surrounded by the serene beauty of Minneriya."
-          />
-          {rooms.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
-              {rooms.map((room) => (
-                <RoomCard key={room._id} room={room} />
-              ))}
-            </div>
-          ) : (
-            <EmptyState message="Room information coming soon." />
-          )}
-        </div>
-      </section>
+      {/* ── The Minneriya Difference: Why Safari With Us & Real Wild Moments ── */}
+      <WhySafariWithUs />
 
       {/* ── CTA ── */}
       <section className="relative py-16 md:py-24 overflow-hidden">

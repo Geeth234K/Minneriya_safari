@@ -68,10 +68,9 @@ export default function ActivitiesBentoGrid({
               muted={isMainMuted}
               playsInline
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-              poster="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=1400&q=80"
+              poster="/videos/thumbs/v1.mov.png"
             >
-              <source src="/videos/safari.mp4" type="video/mp4" />
-              <source src="/videos/safari.webm" type="video/webm" />
+              <source src="/videos/v1.mov" type="video/mp4" />
               <source src="/videos/safari-sample.webm" type="video/webm" />
             </video>
 
