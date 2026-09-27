@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
 import Hero from "@/components/ui/Hero";
 import SectionTitle from "@/components/ui/SectionTitle";
 import { getAboutData } from "@/services/about";
@@ -41,14 +43,24 @@ export default async function AboutPage() {
         <div className="section-container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             {/* Image side */}
-            <div className="relative">
-              <div className="aspect-[4/3] rounded-xl overflow-hidden bg-[var(--color-bg-alt)]">
-                <div className="w-full h-full bg-gradient-to-br from-[var(--color-primary)]/20 to-[var(--color-accent)]/20 flex items-center justify-center">
-                  <div className="text-center p-8">
-                    <span className="text-6xl mb-4 block">🏛️</span>
-                    <p className="text-sm text-[var(--color-text-muted)]">{about.caption}</p>
+            <div className="relative group">
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border border-[var(--color-border)] bg-[var(--color-bg-alt)]">
+                <Image
+                  src={about.image || "/sigiriya.jpg"}
+                  alt={about.imageAlt || "Sigiriya rock fortress and water gardens"}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+                {about.caption && (
+                  <div className="absolute bottom-0 inset-x-0 p-4 md:p-6 pointer-events-none">
+                    <p className="text-xs md:text-sm text-white/95 leading-relaxed bg-black/40 backdrop-blur-md px-4 py-2.5 rounded-lg border border-white/10 inline-block shadow-sm">
+                      {about.caption}
+                    </p>
                   </div>
-                </div>
+                )}
               </div>
             </div>
 
@@ -94,31 +106,78 @@ export default async function AboutPage() {
               description={features.description}
             />
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {features.items.map((f) => (
-                <div
-                  key={f.title}
-                  className="bg-[var(--color-surface)] rounded-xl p-6 text-center border border-[var(--color-border)] hover:shadow-md transition-shadow"
-                >
-                  <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center">
-                    <span className="text-2xl">
-                      {f.icon === "lion" && "🦁"}
-                      {f.icon === "wildlife" && "🐘"}
-                      {f.icon === "village" && "🏘️"}
-                      {f.icon === "sunrise" && "🌅"}
-                      {!["lion", "wildlife", "village", "sunrise"].includes(f.icon) && "✨"}
-                    </span>
-                  </div>
-                  <h3
-                    className="font-bold mb-2"
-                    style={{ fontFamily: "var(--font-heading)" }}
+              {features.items.map((f) => {
+                const featureImage =
+                  f.image ||
+                  (f.icon === "lion"
+                    ? "/highlight-rock.jpg"
+                    : f.icon === "wildlife"
+                    ? "/highlight-safari.jpeg"
+                    : f.icon === "village"
+                    ? "/highlight-village.jpg"
+                    : f.icon === "sunrise"
+                    ? "/highlight-sunrise.jpeg"
+                    : null);
+
+                const featureLink =
+                  f.link ||
+                  (f.icon === "wildlife"
+                    ? "/activities/safari"
+                    : f.icon === "village"
+                    ? "/activities/village-tour"
+                    : "/activities");
+
+                return (
+                  <Link
+                    key={f.title}
+                    href={featureLink}
+                    className="group bg-[var(--color-surface)] rounded-2xl overflow-hidden border border-[var(--color-border)] hover:border-[var(--color-primary)]/40 hover:shadow-xl transition-all duration-300 flex flex-col hover:-translate-y-1"
                   >
-                    {f.title}
-                  </h3>
-                  <p className="text-sm text-[var(--color-text-muted)] leading-relaxed">
-                    {f.description}
-                  </p>
-                </div>
-              ))}
+                    {featureImage ? (
+                      <div className="relative aspect-[16/11] w-full overflow-hidden bg-[var(--color-bg-alt)]">
+                        <Image
+                          src={featureImage}
+                          alt={f.title}
+                          fill
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                          className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-70 group-hover:opacity-40 transition-opacity" />
+                        <span className="absolute top-3 right-3 w-9 h-9 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-base shadow-sm border border-white/15">
+                          {f.icon === "lion" && "🦁"}
+                          {f.icon === "wildlife" && "🐘"}
+                          {f.icon === "village" && "🏘️"}
+                          {f.icon === "sunrise" && "🌅"}
+                          {!["lion", "wildlife", "village", "sunrise"].includes(f.icon) && "✨"}
+                        </span>
+                      </div>
+                    ) : (
+                      <div className="w-14 h-14 mx-auto mt-6 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center">
+                        <span className="text-2xl">✨</span>
+                      </div>
+                    )}
+
+                    <div className="p-5 flex-1 flex flex-col justify-between">
+                      <div>
+                        <h3
+                          className="font-bold text-base mb-2 text-[var(--color-text)] group-hover:text-[var(--color-primary)] transition-colors"
+                          style={{ fontFamily: "var(--font-heading)" }}
+                        >
+                          {f.title}
+                        </h3>
+                        <p className="text-xs sm:text-sm text-[var(--color-text-muted)] leading-relaxed">
+                          {f.description}
+                        </p>
+                      </div>
+
+                      <div className="mt-4 pt-3 border-t border-[var(--color-border)]/60 flex items-center text-xs font-semibold text-[var(--color-accent)] group-hover:translate-x-1 transition-transform">
+                        <span>Explore Experience</span>
+                        <span className="ml-1 text-sm">→</span>
+                      </div>
+                    </div>
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </section>

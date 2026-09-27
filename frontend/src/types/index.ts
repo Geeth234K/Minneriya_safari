@@ -132,6 +132,8 @@ export interface AboutFeature {
   title: string;
   description: string;
   icon: string;
+  image?: string;
+  link?: string;
 }
 
 export interface AboutStat {
