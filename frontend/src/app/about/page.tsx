@@ -183,44 +183,6 @@ export default async function AboutPage() {
         </section>
       )}
 
-      {/* ── Stats ── */}
-      {stats && stats.items.length > 0 && (
-        <section className="relative py-16 md:py-20 overflow-hidden">
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{
-              backgroundImage:
-                "url(https://images.unsplash.com/photo-1549366021-9f761d450615?auto=format&fit=crop&w=2000&q=80)",
-            }}
-          />
-          <div className="gradient-overlay absolute inset-0" style={{ background: "rgba(15, 61, 27, 0.88)" }} />
-          <div className="relative z-10 section-container">
-            <SectionTitle
-              eyebrow={stats.eyebrow}
-              title={stats.title}
-              description={stats.description}
-              light
-            />
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-              {stats.items.map((s) => (
-                <div
-                  key={s.label}
-                  className="text-center p-4 md:p-6 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10"
-                >
-                  <div className="text-3xl md:text-4xl font-bold text-[var(--color-accent)] mb-1" style={{ fontFamily: "var(--font-heading)" }}>
-                    {s.value}{s.suffix}
-                  </div>
-                  <div className="text-white font-semibold text-sm mb-1">{s.label}</div>
-                  <p className="text-white/60 text-xs leading-relaxed hidden sm:block">
-                    {s.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
       {/* ── Gallery ── */}
       {gallery && gallery.items.length > 0 && (
         <section className="section-padding bg-[var(--color-bg)]">
@@ -230,19 +192,35 @@ export default async function AboutPage() {
               title={gallery.title}
               description={gallery.description}
             />
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
               {gallery.items.map((item) => (
                 <div
                   key={item.title}
-                  className="group relative aspect-[4/3] rounded-xl overflow-hidden bg-[var(--color-bg-alt)]"
+                  className="group relative aspect-[3/4] rounded-2xl overflow-hidden bg-[var(--color-bg-alt)] border border-[var(--color-border)] shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-1.5"
                 >
-                  <div className="w-full h-full bg-gradient-to-br from-[var(--color-primary)]/15 to-[var(--color-accent)]/15 flex items-center justify-center">
-                    <span className="text-4xl">📸</span>
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                    <p className="text-white text-sm font-medium p-3 md:p-4">
+                  {item.image ? (
+                    <Image
+                      src={item.image}
+                      alt={item.alt || item.title}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      className="object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gradient-to-br from-[var(--color-primary)]/10 to-[var(--color-accent)]/10 flex items-center justify-center">
+                      <span className="text-4xl">📸</span>
+                    </div>
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent flex flex-col justify-end p-4 sm:p-5">
+                    <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-[var(--color-accent-light)] mb-1">
+                      Guest Moment
+                    </span>
+                    <h4
+                      className="!text-white text-sm sm:text-base font-bold leading-snug drop-shadow-md"
+                      style={{ fontFamily: "var(--font-heading)", color: "#ffffff" }}
+                    >
                       {item.title}
-                    </p>
+                    </h4>
                   </div>
                 </div>
               ))}
@@ -291,6 +269,69 @@ export default async function AboutPage() {
           </div>
         </section>
       )}
+
+      {/* ── Compact CTA with Trust Badges ── */}
+      <section className="relative py-12 md:py-16 overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage:
+              "url(https://images.unsplash.com/photo-1549366021-9f761d450615?auto=format&fit=crop&w=2000&q=80)",
+          }}
+        />
+        <div
+          className="gradient-overlay absolute inset-0"
+          style={{ background: "rgba(15, 61, 27, 0.90)" }}
+        />
+
+        <div className="relative z-10 section-container text-center max-w-4xl mx-auto">
+          <h2
+            className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 !text-white"
+            style={{ fontFamily: "var(--font-heading)" }}
+          >
+            Ready for an Unforgettable Minneriya Safari?
+          </h2>
+          <p className="text-white/80 text-sm sm:text-base mb-5 font-light max-w-lg mx-auto leading-relaxed">
+            Discover Sri Lanka&apos;s greatest wildlife gathering with respectful local trackers and bespoke 4x4 safaris.
+          </p>
+
+          {/* Prominent Trust Badges */}
+          {stats && stats.items.length > 0 && (
+            <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 mb-6">
+              {stats.items.map((s) => (
+                <div
+                  key={s.label}
+                  className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-black/30 backdrop-blur-md border border-white/25 shadow-sm text-white"
+                >
+                  <span className="text-sm sm:text-base font-extrabold text-[var(--color-accent-light)] tracking-wide">
+                    {s.value}
+                    {s.suffix}
+                  </span>
+                  <span className="text-xs sm:text-sm font-semibold text-white/95">
+                    {s.label}
+                  </span>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Action Buttons */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <Link
+              href="/activities/safari"
+              className="btn btn-accent btn-lg w-full sm:w-auto font-semibold shadow-lg"
+            >
+              Book Safari Experience
+            </Link>
+            <Link
+              href="/contact"
+              className="btn btn-outline btn-lg w-full sm:w-auto !text-white !border-white/40 hover:!border-white hover:!bg-white/10"
+            >
+              Contact Our Guides
+            </Link>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

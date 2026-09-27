@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Hero from "@/components/ui/Hero";
 import SectionTitle from "@/components/ui/SectionTitle";
-import RoomCard from "@/components/ui/RoomCard";
-import { EmptyState, ErrorState } from "@/components/ui/States";
+import CottageGallery from "@/components/rooms/CottageGallery";
+import { ErrorState } from "@/components/ui/States";
 import { getRooms } from "@/services/rooms";
 import Link from "next/link";
 
@@ -24,35 +24,130 @@ export default async function RoomsPage() {
     );
   }
 
+  const primaryRoom = rooms?.[0];
+  const price = primaryRoom?.pricePerNight || 45;
+
   return (
     <>
       <Hero
         title="Stay in the Heart of Nature"
         subtitle="Wake up to the sounds of wildlife and enjoy comfortable accommodation just minutes from Minneriya National Park."
-        badge="Accommodation"
-        backgroundImage="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=2000&q=80"
-        primaryCta={{ label: "Reserve Now", href: "/rooms/reserve" }}
+        badge="Eco-Lodge Accommodation"
+        backgroundImage="/rooms/r4.jpeg"
+        primaryCta={{ label: "Reserve Your Stay", href: "/rooms/reserve" }}
         compact
       />
 
-      {/* Rooms */}
+      {/* Boutique Safari Cottage Showcase */}
       <section className="section-padding bg-[var(--color-bg)]">
         <div className="section-container">
           <SectionTitle
-            eyebrow="Our Rooms"
-            title="Comfortable Accommodation"
-            description="Relax in our cozy rooms after a day of adventure. Each stay includes our signature hospitality."
+            eyebrow="Authentic Accommodation"
+            title="Private Safari Chalet & Treehouse Retreat"
+            description="A peaceful, eco-friendly haven nestled within lush tropical gardens just 5 minutes from Minneriya National Park. Relax in comfort after an unforgettable wildlife safari."
           />
 
-          {rooms.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
-              {rooms.map((room) => (
-                <RoomCard key={room._id} room={room} />
-              ))}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start max-w-6xl mx-auto">
+            {/* Left: Interactive 4-Photo Gallery */}
+            <div className="lg:col-span-7">
+              <CottageGallery />
             </div>
-          ) : (
-            <EmptyState message="Room information is being updated. Please contact us for availability." />
-          )}
+
+            {/* Right: Chalet Details & Reservation Card */}
+            <div className="lg:col-span-5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl p-6 sm:p-7 shadow-lg space-y-6">
+              <div>
+                <div className="flex items-center justify-between gap-3 mb-2">
+                  <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
+                    Entire Chalet & Garden
+                  </span>
+                  <span className="text-xs font-medium text-[var(--color-text-muted)] flex items-center gap-1">
+                    <span className="text-amber-500">★</span> 4.9 Guest Rating
+                  </span>
+                </div>
+                <h3
+                  className="text-2xl font-bold text-[var(--color-text)]"
+                  style={{ fontFamily: "var(--font-heading)" }}
+                >
+                  Deluxe Eco-Safari Chalet
+                </h3>
+                <p className="text-xs sm:text-sm text-[var(--color-text-muted)] mt-1.5 leading-relaxed">
+                  Authentic private timber chalet featuring two spacious double beds, attached bathroom, garden veranda, and an observation treehouse.
+                </p>
+              </div>
+
+              {/* Price Tag */}
+              <div className="p-4 rounded-xl bg-[var(--color-bg-alt)] border border-[var(--color-border)] flex items-baseline justify-between">
+                <div>
+                  <span className="text-3xl font-extrabold text-[var(--color-primary)]">
+                    ${price}
+                  </span>
+                  <span className="text-sm text-[var(--color-text-muted)] ml-1.5">
+                    / night
+                  </span>
+                </div>
+                <span className="text-xs font-medium text-[var(--color-accent)] bg-[var(--color-accent)]/10 px-2.5 py-1 rounded-full">
+                  Breakfast Included
+                </span>
+              </div>
+
+              {/* Key Highlights */}
+              <div className="space-y-3">
+                <h4 className="text-xs font-bold uppercase tracking-wider text-[var(--color-text-muted)]">
+                  Chalet Highlights
+                </h4>
+                <ul className="space-y-2.5 text-xs sm:text-sm text-[var(--color-text)]">
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-base leading-none text-[var(--color-primary)]">🛏️</span>
+                    <div>
+                      <strong className="font-semibold">Two Double/Queen Beds:</strong> High timber ceilings, comfortable mattresses, and fresh linens for up to 4 guests.
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-base leading-none text-[var(--color-primary)]">🌳</span>
+                    <div>
+                      <strong className="font-semibold">Treehouse Lookout:</strong> Elevated observation tower in the garden for birdwatching and scenic views.
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-base leading-none text-[var(--color-primary)]">🌿</span>
+                    <div>
+                      <strong className="font-semibold">Private Garden Veranda:</strong> Shaded front porch overlooking peaceful tropical flowers and lawn.
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-base leading-none text-[var(--color-primary)]">🚿</span>
+                    <div>
+                      <strong className="font-semibold">Private En-suite Bathroom:</strong> Clean private bathroom with shower and fresh towels.
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-base leading-none text-[var(--color-primary)]">📍</span>
+                    <div>
+                      <strong className="font-semibold">5 Mins to Minneriya Park:</strong> Quick access for morning and afternoon elephant safari tours.
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              {/* CTA Buttons */}
+              <div className="pt-3 border-t border-[var(--color-border)] space-y-2.5">
+                <Link
+                  href="/rooms/reserve"
+                  className="btn btn-primary w-full text-center py-3 text-sm sm:text-base font-bold shadow-md hover:shadow-xl transition-all"
+                >
+                  Reserve This Chalet Now
+                </Link>
+                <a
+                  href="https://wa.me/94771234567?text=Hello!%20I%20would%20like%20to%20inquire%20about%20booking%20the%20Minneriya%20Safari%20Chalet."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-secondary w-full text-center py-2.5 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2"
+                >
+                  <span>💬</span> Inquire via WhatsApp
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

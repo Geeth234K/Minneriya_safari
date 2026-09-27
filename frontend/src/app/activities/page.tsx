@@ -127,7 +127,7 @@ export default async function ActivitiesPage() {
         title="Our Activities & Experiences"
         subtitle="From thrilling jeep safaris to peaceful village tours and authentic local cuisine — discover everything Minneriya has to offer."
         badge="Activities"
-        backgroundImage="https://images.unsplash.com/photo-1564760055775-d63b17a55c44?auto=format&fit=crop&w=2000&q=80"
+        backgroundImage="/activities-hero.jpg"
         highlights={["Safari", "Village Tour", "Local Food"]}
         compact
       />

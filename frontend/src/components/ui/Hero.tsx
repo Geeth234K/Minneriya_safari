@@ -43,8 +43,8 @@ export default function Hero({
         )}
 
         <h1
-          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight max-w-4xl mx-auto mb-4 md:mb-6 animate-fade-in-up"
-          style={{ fontFamily: "var(--font-heading)" }}
+          className="!text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight max-w-4xl mx-auto mb-4 md:mb-6 animate-fade-in-up drop-shadow-md"
+          style={{ fontFamily: "var(--font-heading)", color: "#ffffff" }}
         >
           {title}
         </h1>

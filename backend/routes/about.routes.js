@@ -125,74 +125,64 @@ const defaultAboutData = {
     ]
   },
   stats: {
-    eyebrow: "Sigiriya by the Numbers",
-    title: "A wonder shaped by time",
-    description: "Signature milestones that define Sigiriya’s enduring global appeal.",
+    eyebrow: "Why Choose Minneriya Safari",
+    title: "Proven Excellence in the Wild",
+    description: "Milestones reflecting our dedication to authentic wildlife safaris and ethical nature experiences.",
     items: [
       {
-        label: "UNESCO Heritage Site Since",
-        value: 1982,
-        suffix: "",
-        description: "Internationally protected for its archaeological and cultural significance.",
-        icon: "heritage"
-      },
-      {
-        label: "Rock Height",
-        value: 200,
-        suffix: "m",
-        description: "A dramatic volcanic plug towering over the surrounding plains.",
-        icon: "height"
-      },
-      {
-        label: "Visitors Each Year",
-        value: 180,
-        suffix: "k+",
-        description: "A magnet for global travelers seeking history and wildlife.",
-        icon: "visitors"
-      },
-      {
-        label: "Nearby National Parks",
-        value: 4,
+        label: "Elephants at The Gathering",
+        value: 500,
         suffix: "+",
-        description: "Easy access to Minneriya, Kaudulla, and other safari reserves.",
-        icon: "parks"
+        description: "The largest Asian elephant gathering in the world.",
+        icon: "wildlife"
+      },
+      {
+        label: "Years Native Trackers",
+        value: 10,
+        suffix: "+",
+        description: "Expert local guides born and raised around Minneriya.",
+        icon: "guide"
+      },
+      {
+        label: "Ethical Safari",
+        value: 100,
+        suffix: "%",
+        description: "Animal welfare, respectful distances, and eco-friendly practices.",
+        icon: "ethical"
+      },
+      {
+        label: "Guest Satisfaction",
+        value: 4.9,
+        suffix: "★",
+        description: "Consistently rated 5 stars by safari lovers worldwide.",
+        icon: "rating"
       }
     ]
   },
   gallery: {
-    eyebrow: "Gallery",
-    title: "Cinematic moments from Sigiriya",
-    description: "A curated glimpse of the landscapes, wildlife, and golden light awaiting you.",
+    eyebrow: "Real Guest Experiences",
+    title: "Adventures Shared With Our Guests",
+    description: "Real smiles, thrilling wildlife encounters, and lifelong friendships created with travelers from around the world.",
     items: [
       {
-        title: "Sigiriya Rock at Dawn",
-        image: "/images/about/sigiriya-rock-at-dawn.png",
-        alt: "Sigiriya rock at dawn"
+        title: "Close Encounter with Gentle Giants",
+        image: "/about/i1.jpeg",
+        alt: "Happy couple on safari jeep with elephant in the background"
       },
       {
-        title: "Luxury Safari Jeeps",
-        image: luxurySafariImagePath,
-        alt: luxurySafariAlt
+        title: "Lakeside Sun & Smiles",
+        image: "/about/i2.jpeg",
+        alt: "Tourists and guides enjoying the scenic Minneriya lake"
       },
       {
-        title: elephantsImageTitle,
-        image: elephantsImagePath,
-        alt: elephantsImageAlt
+        title: "Sunset Elephant Gathering Group",
+        image: "/about/i3.jpeg",
+        alt: "Excited group of travelers on safari jeep with elephant herd at sunset"
       },
       {
-        title: jungleCanopyTitle,
-        image: jungleCanopyImagePath,
-        alt: jungleCanopyAlt
-      },
-      {
-        title: lakesSunsetsTitle,
-        image: lakesSunsetsImagePath,
-        alt: lakesSunsetsAlt
-      },
-      {
-        title: sigiriyaPanoramaTitle,
-        image: sigiriyaPanoramaImagePath,
-        alt: sigiriyaPanoramaAlt
+        title: "Scenic Sigiriya Valley Viewpoint",
+        image: "/about/i4.jpeg",
+        alt: "Couple on safari jeep with Sigiriya rock fortress in the background"
       }
     ]
   },
@@ -284,121 +274,33 @@ router.get("/", async (req, res) => {
           needsSave = true;
         }
       }
+
+      const hasOldStats = aboutPage.stats?.items?.some(
+        item => item.label?.includes("UNESCO") || item.label?.includes("Rock Height")
+      );
+      if (hasOldStats || !aboutPage.stats?.items?.length) {
+        aboutPage.stats = defaultAboutData.stats;
+        needsSave = true;
+      }
+
       const currentGallery = aboutPage.gallery ?? {};
+      if (
+        aboutPage.gallery?.title !== defaultAboutData.gallery.title ||
+        aboutPage.gallery?.eyebrow !== defaultAboutData.gallery.eyebrow
+      ) {
+        aboutPage.gallery.eyebrow = defaultAboutData.gallery.eyebrow;
+        aboutPage.gallery.title = defaultAboutData.gallery.title;
+        aboutPage.gallery.description = defaultAboutData.gallery.description;
+        needsSave = true;
+      }
       const currentItems = Array.isArray(currentGallery.items) ? currentGallery.items : [];
-      if (currentItems.length === 0) {
+      const hasGuestImages = currentItems.some(i => i.image?.includes("/about/i"));
+      if (
+        !hasGuestImages ||
+        currentItems.length !== defaultAboutData.gallery.items.length
+      ) {
         aboutPage.gallery = defaultAboutData.gallery;
         needsSave = true;
-      } else {
-        let galleryNeedsSave = false;
-        const galleryUpdates = [
-          {
-            title: galleryImageTitle,
-            image: galleryImagePath,
-            alt: galleryImageAlt,
-            previousImage: previousGalleryImage,
-            previousImageId: galleryImageId
-          },
-          {
-            title: luxurySafariTitle,
-            image: luxurySafariImagePath,
-            alt: luxurySafariAlt,
-            previousImage: previousLuxurySafariImage,
-            previousImageId: luxurySafariImageId,
-            previousAlt: previousLuxurySafariAlt
-          },
-          {
-            title: elephantsImageTitle,
-            image: elephantsImagePath,
-            alt: elephantsImageAlt,
-            previousImage: previousElephantsImage,
-            previousImageId: elephantsImageId
-          },
-          {
-            title: jungleCanopyTitle,
-            image: jungleCanopyImagePath,
-            alt: jungleCanopyAlt,
-            previousImage: previousJungleCanopyImage,
-            previousImageId: jungleCanopyImageId
-          },
-          {
-            title: lakesSunsetsTitle,
-            image: lakesSunsetsImagePath,
-            alt: lakesSunsetsAlt,
-            previousImage: previousLakesSunsetsImage,
-            previousImageId: lakesSunsetsImageId
-          },
-          {
-            title: sigiriyaPanoramaTitle,
-            image: sigiriyaPanoramaImagePath,
-            alt: sigiriyaPanoramaAlt
-          }
-        ];
-        const nextItems = currentItems.map(item => {
-          const update = galleryUpdates.find(entry => {
-            const titleMatches = normalizeText(item?.title) === normalizeText(entry.title);
-            const altMatches = entry.previousAlt
-              ? normalizeText(item?.alt) === normalizeText(entry.previousAlt)
-              : false;
-            const imageMatches =
-              typeof item?.image === "string" &&
-              (item.image === entry.previousImage ||
-                (entry.previousImageId && item.image.includes(entry.previousImageId)));
-            return titleMatches || altMatches || imageMatches;
-          });
-          if (update) {
-            const nextItem = {
-              ...item,
-              title: update.title,
-              image: update.image,
-              alt: update.alt
-            };
-            if (
-              item.title !== nextItem.title ||
-              item.image !== nextItem.image ||
-              item.alt !== nextItem.alt
-            ) {
-              galleryNeedsSave = true;
-            }
-            return nextItem;
-          }
-          return item;
-        });
-        const hasSigiriyaPanorama = nextItems.some(item => {
-          const titleMatches =
-            normalizeText(item?.title) === normalizeText(sigiriyaPanoramaTitle);
-          const imageMatches = item?.image === sigiriyaPanoramaImagePath;
-          return titleMatches || imageMatches;
-        });
-        if (!hasSigiriyaPanorama) {
-          const lakesIndex = nextItems.findIndex(item => {
-            const titleMatches = normalizeText(item?.title) === normalizeText(lakesSunsetsTitle);
-            const imageMatches =
-              typeof item?.image === "string" &&
-              (item.image === lakesSunsetsImagePath ||
-                (lakesSunsetsImageId && item.image.includes(lakesSunsetsImageId)));
-            return titleMatches || imageMatches;
-          });
-          const newItem = {
-            title: sigiriyaPanoramaTitle,
-            image: sigiriyaPanoramaImagePath,
-            alt: sigiriyaPanoramaAlt
-          };
-          if (lakesIndex >= 0) {
-            nextItems.splice(lakesIndex + 1, 0, newItem);
-          } else {
-            nextItems.push(newItem);
-          }
-          galleryNeedsSave = true;
-        }
-        if (galleryNeedsSave) {
-          aboutPage.gallery = {
-            ...defaultAboutData.gallery,
-            ...currentGallery,
-            items: nextItems
-          };
-          needsSave = true;
-        }
       }
       if (needsSave) {
         await aboutPage.save();
