@@ -25,7 +25,7 @@ export default async function RoomsPage() {
   }
 
   const primaryRoom = rooms?.[0];
-  const price = primaryRoom?.pricePerNight || 45;
+  const price = 18;
 
   return (
     <>
@@ -71,12 +71,12 @@ export default async function RoomsPage() {
                   Deluxe Eco-Safari Chalet
                 </h3>
                 <p className="text-xs sm:text-sm text-[var(--color-text-muted)] mt-1.5 leading-relaxed">
-                  Authentic private timber chalet featuring two spacious double beds, attached bathroom, garden veranda, and an observation treehouse.
+                  Authentic private timber chalet featuring air conditioning (A/C), two spacious double beds, attached bathroom, garden veranda, and an observation treehouse.
                 </p>
               </div>
 
               {/* Price Tag */}
-              <div className="p-4 rounded-xl bg-[var(--color-bg-alt)] border border-[var(--color-border)] flex items-baseline justify-between">
+              <div className="p-4 rounded-xl bg-[var(--color-bg-alt)] border border-[var(--color-border)] flex items-baseline justify-between flex-wrap gap-2">
                 <div>
                   <span className="text-3xl font-extrabold text-[var(--color-primary)]">
                     ${price}
@@ -85,9 +85,14 @@ export default async function RoomsPage() {
                     / night
                   </span>
                 </div>
-                <span className="text-xs font-medium text-[var(--color-accent)] bg-[var(--color-accent)]/10 px-2.5 py-1 rounded-full">
-                  Breakfast Included
-                </span>
+                <div className="flex items-center gap-1.5 flex-wrap">
+                  <span className="text-xs font-semibold text-[var(--color-primary)] bg-[var(--color-primary)]/10 border border-[var(--color-primary)]/20 px-2.5 py-1 rounded-full">
+                    ❄️ A/C Included
+                  </span>
+                  <span className="text-xs font-medium text-[var(--color-accent)] bg-[var(--color-accent)]/10 px-2.5 py-1 rounded-full">
+                    Breakfast Included
+                  </span>
+                </div>
               </div>
 
               {/* Key Highlights */}
@@ -96,6 +101,12 @@ export default async function RoomsPage() {
                   Chalet Highlights
                 </h4>
                 <ul className="space-y-2.5 text-xs sm:text-sm text-[var(--color-text)]">
+                  <li className="flex items-start gap-2.5">
+                    <span className="text-base leading-none text-[var(--color-primary)]">❄️</span>
+                    <div>
+                      <strong className="font-semibold">Air Conditioning (A/C):</strong> Fully air-conditioned bedroom for a cool, refreshing sleep after your safari.
+                    </div>
+                  </li>
                   <li className="flex items-start gap-2.5">
                     <span className="text-base leading-none text-[var(--color-primary)]">🛏️</span>
                     <div>
@@ -163,7 +174,6 @@ export default async function RoomsPage() {
               { emoji: "🍳", label: "Breakfast Included" },
               { emoji: "🌿", label: "Garden View" },
               { emoji: "🚿", label: "Private Bathroom" },
-              { emoji: "📶", label: "Free Wi-Fi" },
               { emoji: "🅿️", label: "Free Parking" },
               { emoji: "🛏️", label: "Fresh Linens" },
               { emoji: "🧹", label: "Daily Cleaning" },

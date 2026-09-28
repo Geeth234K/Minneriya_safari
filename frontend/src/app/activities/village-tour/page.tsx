@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Hero from "@/components/ui/Hero";
 import SectionTitle from "@/components/ui/SectionTitle";
 import { ErrorState, EmptyState } from "@/components/ui/States";
@@ -56,7 +57,8 @@ export default async function VillageTourPage() {
         title="Minneriya Village Tour"
         subtitle={villageTour.shortDescription}
         badge="Cultural Experience"
-        backgroundImage="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=2000&q=80"
+        backgroundImage="/images/village.jpg"
+        backgroundPosition="center 60%"
         primaryCta={{ label: "Book This Tour", href: "/rooms/reserve" }}
         compact
       />
@@ -111,31 +113,58 @@ export default async function VillageTourPage() {
               description="Each village tour includes these authentic experiences."
             />
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
-              {villageTour.includedActivities.map((act) => (
-                <div
-                  key={act.title}
-                  className="bg-[var(--color-surface)] rounded-xl overflow-hidden border border-[var(--color-border)] hover:shadow-md transition-shadow"
-                >
-                  <div className="h-40 bg-gradient-to-br from-[var(--color-accent)]/20 to-[var(--color-primary)]/10 flex items-center justify-center">
-                    <span className="text-5xl">
-                      {act.title.toLowerCase().includes("cart") && "🛒"}
-                      {act.title.toLowerCase().includes("boat") && "🚣"}
-                      {!act.title.toLowerCase().includes("cart") && !act.title.toLowerCase().includes("boat") && "🌿"}
-                    </span>
+              {villageTour.includedActivities.map((act) => {
+                const isBoat = act.title.toLowerCase().includes("boat");
+                const isCart = act.title.toLowerCase().includes("cart");
+                const activityImage = isBoat
+                  ? "/highlight-village.jpg"
+                  : isCart
+                  ? "/images/bullock-cart.jpg"
+                  : act.image || null;
+
+                return (
+                  <div
+                    key={act.title}
+                    className="group bg-[var(--color-surface)] rounded-xl overflow-hidden border border-[var(--color-border)] hover:shadow-lg transition-all duration-300"
+                  >
+                    {activityImage ? (
+                      <div className="relative h-48 w-full overflow-hidden bg-[var(--color-bg-alt)]">
+                        <Image
+                          src={activityImage}
+                          alt={act.title}
+                          fill
+                          sizes="(max-width: 768px) 100vw, 400px"
+                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent pointer-events-none" />
+                        <span className="absolute bottom-3 left-3 text-xs font-semibold px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-white border border-white/10 shadow-sm">
+                          {isBoat ? "🚣 Scenic Catamaran Ride" : isCart ? "🐂 Traditional Bullock Cart" : "Experience"}
+                        </span>
+                      </div>
+                    ) : (
+                      <div className="h-48 bg-gradient-to-br from-[var(--color-accent)]/20 to-[var(--color-primary)]/10 flex flex-col items-center justify-center">
+                        <span className="text-5xl mb-2">
+                          {isCart ? "🐂" : "🌿"}
+                        </span>
+                        <span className="text-xs font-semibold text-[var(--color-text-muted)] uppercase tracking-wider">
+                          {isCart ? "Bullock Cart Ride" : act.title}
+                        </span>
+                      </div>
+                    )}
+                    <div className="p-5">
+                      <h3
+                        className="text-lg font-bold mb-2 group-hover:text-[var(--color-primary)] transition-colors"
+                        style={{ fontFamily: "var(--font-heading)" }}
+                      >
+                        {act.title}
+                      </h3>
+                      <p className="text-sm text-[var(--color-text-muted)] leading-relaxed">
+                        {act.description}
+                      </p>
+                    </div>
                   </div>
-                  <div className="p-5">
-                    <h3
-                      className="text-lg font-bold mb-2"
-                      style={{ fontFamily: "var(--font-heading)" }}
-                    >
-                      {act.title}
-                    </h3>
-                    <p className="text-sm text-[var(--color-text-muted)] leading-relaxed">
-                      {act.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>

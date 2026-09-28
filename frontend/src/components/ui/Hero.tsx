@@ -5,6 +5,7 @@ interface HeroProps {
   subtitle: string;
   badge?: string;
   backgroundImage: string;
+  backgroundPosition?: string;
   primaryCta?: { label: string; href: string };
   secondaryCta?: { label: string; href: string };
   highlights?: string[];
@@ -16,6 +17,7 @@ export default function Hero({
   subtitle,
   badge,
   backgroundImage,
+  backgroundPosition = "center",
   primaryCta,
   secondaryCta,
   highlights,
@@ -29,8 +31,11 @@ export default function Hero({
     >
       {/* Background image */}
       <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: `url(${backgroundImage})` }}
+        className="absolute inset-0 bg-cover"
+        style={{
+          backgroundImage: `url(${backgroundImage})`,
+          backgroundPosition,
+        }}
       />
       <div className="gradient-overlay absolute inset-0" />
 

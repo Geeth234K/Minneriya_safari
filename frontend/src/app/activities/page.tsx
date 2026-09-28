@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import Hero from "@/components/ui/Hero";
 import SectionTitle from "@/components/ui/SectionTitle";
 import { ErrorState } from "@/components/ui/States";
@@ -35,6 +36,7 @@ const activityCards = [
   {
     slug: "/activities/safari",
     icon: "🐘",
+    image: "/about/i3.jpeg",
     fallbackTitle: "Jeep Safari",
     fallbackDescription:
       "Venture into Minneriya National Park and witness elephants, leopards, and exotic birds in their natural habitat.",
@@ -43,6 +45,7 @@ const activityCards = [
   {
     slug: "/activities/village-tour",
     icon: "🏘️",
+    image: "/images/village.jpg",
     keyword: "village",
     fallbackTitle: "Village Tour",
     fallbackDescription:
@@ -52,6 +55,8 @@ const activityCards = [
   {
     slug: "/activities/local-food",
     icon: "🍛",
+    image:
+      "https://images.unsplash.com/photo-1567337710282-00832b415979?auto=format&fit=crop&w=800&q=80",
     keyword: "food",
     fallbackTitle: "Local Food",
     fallbackDescription:
@@ -149,36 +154,63 @@ export default async function ActivitiesPage() {
                 className="group block bg-[var(--color-surface)] rounded-xl overflow-hidden border border-[var(--color-border)] hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
               >
                 {/* Card header */}
-                <div
-                  className={`relative h-48 sm:h-56 bg-gradient-to-br ${card.gradient} flex items-center justify-center`}
-                >
-                  <div className="text-center text-white">
-                    <div className="w-16 h-16 mx-auto mb-3 rounded-full bg-white/15 backdrop-blur-sm flex items-center justify-center">
-                      <span className="text-3xl">{card.icon}</span>
-                    </div>
-                    <h3
-                      className="text-xl font-bold"
-                      style={{ fontFamily: "var(--font-heading)" }}
-                    >
-                      {card.title}
-                    </h3>
-                  </div>
+                <div className="relative h-52 sm:h-60 overflow-hidden bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-primary-dark)]">
+                  {card.image && (
+                    <Image
+                      src={card.image}
+                      alt={card.title}
+                      fill
+                      unoptimized={card.image.startsWith("http")}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                      style={{
+                        objectPosition:
+                          card.slug === "/activities/safari"
+                            ? "center 30%"
+                            : card.slug === "/activities/village-tour"
+                            ? "center 60%"
+                            : "center center",
+                      }}
+                    />
+                  )}
+                  {/* Dark gradient overlay for text legibility */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/15 pointer-events-none" />
 
-                  {/* Hover arrow */}
-                  <div className="absolute bottom-3 right-3 w-8 h-8 rounded-full bg-white/15 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <svg
-                      className="w-4 h-4 text-white"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
+                  {/* Header content & badges */}
+                  <div className="absolute inset-0 p-5 flex flex-col justify-between z-10 pointer-events-none">
+                    <div className="flex items-center justify-between">
+                      <span className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-md border border-white/20 flex items-center justify-center text-xl shadow-sm">
+                        {card.icon}
+                      </span>
+                      {/* Interactive arrow button */}
+                      <div className="w-8 h-8 rounded-full bg-black/40 backdrop-blur-md border border-white/20 flex items-center justify-center text-white group-hover:bg-[var(--color-accent)] group-hover:text-[var(--color-primary-dark)] transition-all">
+                        <svg
+                          className="w-4 h-4 group-hover:translate-x-0.5 transition-transform"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth={2.5}
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M9 5l7 7-7 7"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+
+                    <div>
+                      <span className="text-[11px] uppercase tracking-wider font-bold text-[var(--color-accent)] mb-1 block">
+                        Experience
+                      </span>
+                      <h3
+                        className="text-xl font-bold !text-white drop-shadow-md"
+                        style={{ fontFamily: "var(--font-heading)" }}
+                      >
+                        {card.title}
+                      </h3>
+                    </div>
                   </div>
                 </div>
 
