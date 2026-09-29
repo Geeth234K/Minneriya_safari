@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import SectionTitle from "@/components/ui/SectionTitle";
 import type { Activity, Safari } from "@/types";
@@ -176,19 +177,14 @@ export default function ActivitiesBentoGrid({
 
             {/* ── CARD 2: VILLAGE TOUR ── */}
             <div className="group relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 min-h-[260px] sm:min-h-[275px] flex flex-col justify-between border border-white/20">
-              {/* Background Video / Poster */}
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                poster="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1000&q=80"
-              >
-                <source src="/videos/village.mp4" type="video/mp4" />
-                <source src="/videos/village.webm" type="video/webm" />
-                <source src="/videos/village-sample.webm" type="video/webm" />
-              </video>
+              {/* Background Image */}
+              <Image
+                src="/images/village.jpg"
+                alt={villageActivity?.title || "Minneriya Village Tour"}
+                fill
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                className="object-cover object-[center_60%] transition-transform duration-700 ease-out group-hover:scale-105"
+              />
 
               {/* Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/20" />
@@ -237,19 +233,14 @@ export default function ActivitiesBentoGrid({
 
             {/* ── CARD 3: LOCAL FOOD ── */}
             <div className="group relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 min-h-[260px] sm:min-h-[275px] flex flex-col justify-between border border-white/20">
-              {/* Background Video / Poster */}
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                poster="https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=1000&q=80"
-              >
-                <source src="/videos/food.mp4" type="video/mp4" />
-                <source src="/videos/food.webm" type="video/webm" />
-                <source src="/videos/food-sample.webm" type="video/webm" />
-              </video>
+              {/* Background Image */}
+              <Image
+                src="/images/localfood.jpg"
+                alt={foodActivity?.title || "Traditional Sri Lankan Dining"}
+                fill
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              />
 
               {/* Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/20" />
