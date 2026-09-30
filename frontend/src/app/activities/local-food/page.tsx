@@ -61,7 +61,7 @@ export default async function LocalFoodPage() {
           "Savor the vibrant flavors of traditional Sri Lankan food, freshly prepared with local ingredients."
         }
         badge="Local Food Experience"
-        backgroundImage="https://images.unsplash.com/photo-1567337710282-00832b415979?auto=format&fit=crop&w=2000&q=80"
+        backgroundImage="/images/localfood.webp"
         primaryCta={{ label: "Book Experience", href: "/rooms/reserve" }}
         compact
       />

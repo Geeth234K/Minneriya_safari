@@ -55,8 +55,7 @@ const activityCards = [
   {
     slug: "/activities/local-food",
     icon: "🍛",
-    image:
-      "https://images.unsplash.com/photo-1567337710282-00832b415979?auto=format&fit=crop&w=800&q=80",
+    image: "/images/localfood.webp",
     keyword: "food",
     fallbackTitle: "Local Food",
     fallbackDescription:

@@ -232,7 +232,7 @@ export default function ReservationForm({ rooms }: ReservationFormProps) {
             value={formData.whatsapp}
             onChange={handleChange}
             className={`form-input ${errors.whatsapp ? "!border-[var(--color-error)]" : ""}`}
-            placeholder="+94 77 123 4567"
+            placeholder="+94 76 283 8796"
           />
           {errors.whatsapp && <p className="form-error">{errors.whatsapp}</p>}
         </div>

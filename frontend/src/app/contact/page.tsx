@@ -41,9 +41,20 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-sm mb-1">Location</h3>
-                    <p className="text-sm text-[var(--color-text-muted)]">
-                      Minneriya, North Central Province,<br />Sri Lanka
-                    </p>
+                    <a
+                      href="https://maps.app.goo.gl/GqiXALPcQE9wAFCC7"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group inline-block"
+                    >
+                      <p className="text-sm text-[var(--color-text-muted)] group-hover:text-[var(--color-primary)] transition-colors">
+                        Wild Life Eco Jeep Safari,<br />
+                        Minneriya / Sigiriya, Sri Lanka
+                      </p>
+                      <span className="text-xs text-[var(--color-accent)] font-medium underline flex items-center gap-1 mt-0.5 group-hover:opacity-80">
+                        View on Google Maps →
+                      </span>
+                    </a>
                   </div>
                 </div>
 
@@ -55,9 +66,12 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-sm mb-1">Email</h3>
-                    <p className="text-sm text-[var(--color-text-muted)]">
-                      info@minneriyasafari.com
-                    </p>
+                    <a
+                      href="mailto:sigiriyawhitelodge@gmail.com"
+                      className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors break-all"
+                    >
+                      sigiriyawhitelodge@gmail.com
+                    </a>
                   </div>
                 </div>
 
@@ -69,9 +83,22 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-sm mb-1">Phone / WhatsApp</h3>
-                    <p className="text-sm text-[var(--color-text-muted)]">
-                      +94 77 123 4567
-                    </p>
+                    <div className="flex flex-col gap-1">
+                      <a
+                        href="tel:+94762838796"
+                        className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors font-medium"
+                      >
+                        +94 76 283 8796
+                      </a>
+                      <a
+                        href="https://wa.me/94762838796?text=Hi%20Minneriya%20Safari%2C%20I%20would%20like%20to%20inquire%20about%20safari%20tours"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-600 hover:text-emerald-700 transition-colors"
+                      >
+                        <span>Chat on WhatsApp →</span>
+                      </a>
+                    </div>
                   </div>
                 </div>
 
