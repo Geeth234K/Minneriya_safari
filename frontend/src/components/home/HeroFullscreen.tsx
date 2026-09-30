@@ -7,7 +7,7 @@ export default function HeroFullscreen() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/safari-hero-elephant.jpeg"
+          src="/safari-hero-elephant.webp"
           alt="Gentle Giants at Minneriya National Park"
           fill
           priority

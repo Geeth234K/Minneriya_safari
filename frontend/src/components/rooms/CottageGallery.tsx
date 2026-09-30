@@ -12,25 +12,25 @@ export interface GalleryPhoto {
 
 const PHOTOS: GalleryPhoto[] = [
   {
-    src: "/rooms/r1.jpeg",
+    src: "/rooms/r1.webp",
     title: "Eco-Chalet & Treehouse",
     tag: "Exterior View",
     description: "Private wooden veranda, manicured lawn, and authentic treehouse lookout.",
   },
   {
-    src: "/rooms/r2.jpeg",
+    src: "/rooms/r2.webp",
     title: "Spacious Bedroom Suite",
     tag: "Interior",
     description: "Two comfortable double beds, wooden beam ceiling, ceiling fan, and en-suite bathroom.",
   },
   {
-    src: "/rooms/r3.jpeg",
+    src: "/rooms/r3.webp",
     title: "Tropical Garden Pathway",
     tag: "Garden & Grounds",
     description: "Lush pathway surrounded by native flora, palm trees, and outdoor lanterns.",
   },
   {
-    src: "/rooms/r4.jpeg",
+    src: "/rooms/r4.webp",
     title: "Porch & Nature Setting",
     tag: "Nature Vibe",
     description: "Rustic wooden details and serene open spaces for true jungle tranquility.",

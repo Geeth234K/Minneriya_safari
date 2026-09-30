@@ -11,7 +11,7 @@ interface SafariCardProps {
 export default function SafariCard({
   safari,
   featured = false,
-  image = "/activities-hero.jpg",
+  image = "/activities-hero.webp",
 }: SafariCardProps) {
   return (
     <article

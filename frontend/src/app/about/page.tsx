@@ -33,7 +33,7 @@ export default async function AboutPage() {
         title="Discover the Wonder of Minneriya"
         subtitle="Minneriya is where royal history, lush jungles, wildlife corridors, and safari adventures blend into an unforgettable journey."
         badge="About Minneriya Safari"
-        backgroundImage="/about-hero.jpg"
+        backgroundImage="/about-hero.webp"
         highlights={["UNESCO Heritage", "Wildlife Safaris", "Cultural Immersion", "Luxury Escapes"]}
         compact
       />
@@ -46,7 +46,7 @@ export default async function AboutPage() {
             <div className="relative group">
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border border-[var(--color-border)] bg-[var(--color-bg-alt)]">
                 <Image
-                  src={about.image || "/sigiriya.jpg"}
+                  src={about.image || "/sigiriya.webp"}
                   alt={about.imageAlt || "Sigiriya rock fortress and water gardens"}
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
@@ -110,13 +110,13 @@ export default async function AboutPage() {
                 const featureImage =
                   f.image ||
                   (f.icon === "lion"
-                    ? "/highlight-rock.jpg"
+                    ? "/highlight-rock.webp"
                     : f.icon === "wildlife"
-                    ? "/highlight-safari.jpeg"
+                    ? "/highlight-safari.webp"
                     : f.icon === "village"
-                    ? "/highlight-village.jpg"
+                    ? "/highlight-village.webp"
                     : f.icon === "sunrise"
-                    ? "/highlight-sunrise.jpeg"
+                    ? "/highlight-sunrise.webp"
                     : null);
 
                 const featureLink =

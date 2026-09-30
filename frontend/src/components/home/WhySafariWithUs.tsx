@@ -23,7 +23,7 @@ const SAFARI_MOMENTS: SafariMoment[] = [
     description:
       "Guests in our open-top 4x4 watching a gentle elephant family safely cross the riverbank right before their eyes.",
     videoSrc: "/videos/v7.mov",
-    thumbnail: "/videos/thumbs/v7.mov.png",
+    thumbnail: "/videos/thumbs/v7.mov.webp",
     duration: "0:07",
   },
   {
@@ -33,7 +33,7 @@ const SAFARI_MOMENTS: SafariMoment[] = [
     description:
       "Baby elephants playfully wrestling and rolling in the soft grass along the shores of Minneriya reservoir.",
     videoSrc: "/videos/v13.mov",
-    thumbnail: "/videos/thumbs/v13.mov.png",
+    thumbnail: "/videos/thumbs/v13.mov.webp",
     duration: "0:10",
   },
   {
@@ -43,7 +43,7 @@ const SAFARI_MOMENTS: SafariMoment[] = [
     description:
       "An unforgettable sunset from a high rock lookout as golden evening light envelops the Minneriya and Sigiriya jungles.",
     videoSrc: "/videos/v8.mov",
-    thumbnail: "/videos/thumbs/v8.mov.png",
+    thumbnail: "/videos/thumbs/v8.mov.webp",
     duration: "0:12",
   },
   {
@@ -53,7 +53,7 @@ const SAFARI_MOMENTS: SafariMoment[] = [
     description:
       "A peaceful herd calmly approaching the shaded jeep trail in total tranquility — pure harmony in the wild.",
     videoSrc: "/videos/v5.mov",
-    thumbnail: "/videos/thumbs/v5.mov.png",
+    thumbnail: "/videos/thumbs/v5.mov.webp",
     duration: "0:14",
   },
   {
@@ -63,7 +63,7 @@ const SAFARI_MOMENTS: SafariMoment[] = [
     description:
       "Cruising the expansive green plains where hundreds of elephants gather during the legendary dry season.",
     videoSrc: "/videos/v11.mov",
-    thumbnail: "/videos/thumbs/v11.mov.png",
+    thumbnail: "/videos/thumbs/v11.mov.webp",
     duration: "0:09",
   },
   {
@@ -73,7 +73,7 @@ const SAFARI_MOMENTS: SafariMoment[] = [
     description:
       "A tiny elephant calf joyfully trotting across the road next to its protective mother.",
     videoSrc: "/videos/v4.mov",
-    thumbnail: "/videos/thumbs/v4.mov.png",
+    thumbnail: "/videos/thumbs/v4.mov.webp",
     duration: "0:04",
   },
 ];

@@ -6,7 +6,7 @@ const router = Router();
 const heroImagePath = "/images/about/sigiriya-hero.jpg";
 const previousHeroImage =
   "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1920&q=80";
-const aboutImagePath = "/sigiriya.jpg";
+const aboutImagePath = "/sigiriya.webp";
 const previousAboutImage =
   "https://images.unsplash.com/photo-1482192596544-9eb780fc7f66?auto=format&fit=crop&w=1400&q=80";
 const previousAboutImageAlt = "Sigiriya rock fortress rising above the jungle";
@@ -98,28 +98,28 @@ const defaultAboutData = {
         title: "Lion Rock Fortress",
         description: "Climb the legendary staircase to panoramic views and ancient frescoes.",
         icon: "lion",
-        image: "/highlight-rock.jpg",
+        image: "/highlight-rock.webp",
         link: "/about"
       },
       {
         title: "Wildlife Safaris",
         description: "Spot elephants, leopards, and endemic birds in nearby national parks.",
         icon: "wildlife",
-        image: "/highlight-safari.jpeg",
+        image: "/highlight-safari.webp",
         link: "/activities/safari"
       },
       {
         title: "Village Experiences",
         description: "Meet local artisans, taste traditional cuisine, and cruise serene lakes.",
         icon: "village",
-        image: "/highlight-village.jpg",
+        image: "/highlight-village.webp",
         link: "/activities/village-tour"
       },
       {
         title: "Sunrise & Nature Views",
         description: "Golden light over misty jungles and Sigiriya’s royal gardens.",
         icon: "sunrise",
-        image: "/highlight-sunrise.jpeg",
+        image: "/highlight-sunrise.webp",
         link: "/activities"
       }
     ]
@@ -166,22 +166,22 @@ const defaultAboutData = {
     items: [
       {
         title: "Close Encounter with Gentle Giants",
-        image: "/about/i1.jpeg",
+        image: "/about/i1.webp",
         alt: "Happy couple on safari jeep with elephant in the background"
       },
       {
         title: "Lakeside Sun & Smiles",
-        image: "/about/i2.jpeg",
+        image: "/about/i2.webp",
         alt: "Tourists and guides enjoying the scenic Minneriya lake"
       },
       {
         title: "Sunset Elephant Gathering Group",
-        image: "/about/i3.jpeg",
+        image: "/about/i3.webp",
         alt: "Excited group of travelers on safari jeep with elephant herd at sunset"
       },
       {
         title: "Scenic Sigiriya Valley Viewpoint",
-        image: "/about/i4.jpeg",
+        image: "/about/i4.webp",
         alt: "Couple on safari jeep with Sigiriya rock fortress in the background"
       }
     ]
@@ -251,10 +251,10 @@ router.get("/", async (req, res) => {
       }
 
       const featureImageMap = {
-        lion: { image: "/highlight-rock.jpg", link: "/about" },
-        wildlife: { image: "/highlight-safari.jpeg", link: "/activities/safari" },
-        village: { image: "/highlight-village.jpg", link: "/activities/village-tour" },
-        sunrise: { image: "/highlight-sunrise.jpeg", link: "/activities" }
+        lion: { image: "/highlight-rock.webp", link: "/about" },
+        wildlife: { image: "/highlight-safari.webp", link: "/activities/safari" },
+        village: { image: "/highlight-village.webp", link: "/activities/village-tour" },
+        sunrise: { image: "/highlight-sunrise.webp", link: "/activities" }
       };
 
       if (aboutPage.features?.items?.length) {

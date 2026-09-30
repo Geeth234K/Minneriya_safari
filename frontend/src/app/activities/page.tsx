@@ -36,7 +36,7 @@ const activityCards = [
   {
     slug: "/activities/safari",
     icon: "🐘",
-    image: "/about/i3.jpeg",
+    image: "/about/i3.webp",
     fallbackTitle: "Jeep Safari",
     fallbackDescription:
       "Venture into Minneriya National Park and witness elephants, leopards, and exotic birds in their natural habitat.",
@@ -45,7 +45,7 @@ const activityCards = [
   {
     slug: "/activities/village-tour",
     icon: "🏘️",
-    image: "/images/village.jpg",
+    image: "/images/village.webp",
     keyword: "village",
     fallbackTitle: "Village Tour",
     fallbackDescription:
@@ -132,7 +132,7 @@ export default async function ActivitiesPage() {
         title="Our Activities & Experiences"
         subtitle="From thrilling jeep safaris to peaceful village tours and authentic local cuisine — discover everything Minneriya has to offer."
         badge="Activities"
-        backgroundImage="/activities-hero.jpg"
+        backgroundImage="/activities-hero.webp"
         highlights={["Safari", "Village Tour", "Local Food"]}
         compact
       />

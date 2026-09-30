@@ -47,7 +47,7 @@ export default async function SafariPage() {
         title="Minneriya Jeep Safari"
         subtitle="Venture deep into the wild landscapes of Minneriya and witness Sri Lanka's most magnificent wildlife in their natural habitat."
         badge="Safari Experience"
-        backgroundImage="/about/i3.jpeg"
+        backgroundImage="/about/i3.webp"
         backgroundPosition="center 30%"
         primaryCta={{ label: "Book Safari", href: "/rooms/reserve" }}
         compact

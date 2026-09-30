@@ -69,7 +69,7 @@ export default function ActivitiesBentoGrid({
               muted={isMainMuted}
               playsInline
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-              poster="/videos/thumbs/v1.mov.png"
+              poster="/videos/thumbs/v1.mov.webp"
             >
               <source src="/videos/v1.mov" type="video/mp4" />
               <source src="/videos/safari-sample.webm" type="video/webm" />
@@ -179,7 +179,7 @@ export default function ActivitiesBentoGrid({
             <div className="group relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 min-h-[260px] sm:min-h-[275px] flex flex-col justify-between border border-white/20">
               {/* Background Image */}
               <Image
-                src="/images/village.jpg"
+                src="/images/village.webp"
                 alt={villageActivity?.title || "Minneriya Village Tour"}
                 fill
                 sizes="(max-width: 1024px) 100vw, 40vw"
@@ -235,7 +235,7 @@ export default function ActivitiesBentoGrid({
             <div className="group relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 min-h-[260px] sm:min-h-[275px] flex flex-col justify-between border border-white/20">
               {/* Background Image */}
               <Image
-                src="/images/localfood.jpg"
+                src="/images/localfood.webp"
                 alt={foodActivity?.title || "Traditional Sri Lankan Dining"}
                 fill
                 sizes="(max-width: 1024px) 100vw, 40vw"

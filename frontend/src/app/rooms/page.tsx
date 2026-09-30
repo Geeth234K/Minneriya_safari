@@ -33,7 +33,7 @@ export default async function RoomsPage() {
         title="Stay in the Heart of Nature"
         subtitle="Wake up to the sounds of wildlife and enjoy comfortable accommodation just minutes from Minneriya National Park."
         badge="Eco-Lodge Accommodation"
-        backgroundImage="/rooms/r4.jpeg"
+        backgroundImage="/rooms/r4.webp"
         primaryCta={{ label: "Reserve Your Stay", href: "/rooms/reserve" }}
         compact
       />

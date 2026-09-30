@@ -17,3 +17,6 @@ coverage/
 # Logs
 *.log
 npm-debug.log*
+
+# Backup of original high-resolution assets
+original-assets/

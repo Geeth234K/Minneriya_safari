@@ -57,7 +57,7 @@ export default async function VillageTourPage() {
         title="Minneriya Village Tour"
         subtitle={villageTour.shortDescription}
         badge="Cultural Experience"
-        backgroundImage="/images/village.jpg"
+        backgroundImage="/images/village.webp"
         backgroundPosition="center 60%"
         primaryCta={{ label: "Book This Tour", href: "/rooms/reserve" }}
         compact
@@ -117,9 +117,9 @@ export default async function VillageTourPage() {
                 const isBoat = act.title.toLowerCase().includes("boat");
                 const isCart = act.title.toLowerCase().includes("cart");
                 const activityImage = isBoat
-                  ? "/highlight-village.jpg"
+                  ? "/highlight-village.webp"
                   : isCart
-                  ? "/images/bullock-cart.jpg"
+                  ? "/images/bullock-cart.webp"
                   : act.image || null;
 
                 return (
