@@ -32,6 +32,7 @@ export default function ContactPage() {
               />
 
               <div className="space-y-6">
+                {/* Location */}
                 <div className="flex items-start gap-4">
                   <div className="w-11 h-11 rounded-lg bg-[var(--color-primary)]/10 flex items-center justify-center shrink-0">
                     <svg className="w-5 h-5 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -45,19 +46,15 @@ export default function ContactPage() {
                       href="https://maps.app.goo.gl/GqiXALPcQE9wAFCC7"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group inline-block"
+                      className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors leading-relaxed block"
                     >
-                      <p className="text-sm text-[var(--color-text-muted)] group-hover:text-[var(--color-primary)] transition-colors">
-                        Wild Life Eco Jeep Safari,<br />
-                        Minneriya / Sigiriya, Sri Lanka
-                      </p>
-                      <span className="text-xs text-[var(--color-accent)] font-medium underline flex items-center gap-1 mt-0.5 group-hover:opacity-80">
-                        View on Google Maps →
-                      </span>
+                      Wild Life Eco Jeep Safari,<br />
+                      Minneriya / Sigiriya, Sri Lanka
                     </a>
                   </div>
                 </div>
 
+                {/* Email */}
                 <div className="flex items-start gap-4">
                   <div className="w-11 h-11 rounded-lg bg-[var(--color-primary)]/10 flex items-center justify-center shrink-0">
                     <svg className="w-5 h-5 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -68,13 +65,14 @@ export default function ContactPage() {
                     <h3 className="font-semibold text-sm mb-1">Email</h3>
                     <a
                       href="mailto:sigiriyawhitelodge@gmail.com"
-                      className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors break-all"
+                      className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors break-all block"
                     >
                       sigiriyawhitelodge@gmail.com
                     </a>
                   </div>
                 </div>
 
+                {/* Phone */}
                 <div className="flex items-start gap-4">
                   <div className="w-11 h-11 rounded-lg bg-[var(--color-primary)]/10 flex items-center justify-center shrink-0">
                     <svg className="w-5 h-5 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -82,26 +80,46 @@ export default function ContactPage() {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-sm mb-1">Phone / WhatsApp</h3>
-                    <div className="flex flex-col gap-1">
-                      <a
-                        href="tel:+94762838796"
-                        className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors font-medium"
-                      >
-                        +94 76 283 8796
-                      </a>
-                      <a
-                        href="https://wa.me/94762838796?text=Hi%20Minneriya%20Safari%2C%20I%20would%20like%20to%20inquire%20about%20safari%20tours"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-600 hover:text-emerald-700 transition-colors"
-                      >
-                        <span>Chat on WhatsApp →</span>
-                      </a>
-                    </div>
+                    <h3 className="font-semibold text-sm mb-1">Phone</h3>
+                    <a
+                      href="tel:+94762838796"
+                      className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors block"
+                    >
+                      +94 76 283 8796
+                    </a>
                   </div>
                 </div>
 
+                {/* WhatsApp */}
+                <div className="flex items-start gap-4">
+                  <div className="w-11 h-11 rounded-lg bg-[var(--color-primary)]/10 flex items-center justify-center shrink-0">
+                    <svg
+                      className="w-5 h-5 text-[var(--color-primary)]"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M3 21l1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z" />
+                      <path d="M9.5 9.5c.3-.3.8-.3 1.1 0l1 1c.3.3.3.8 0 1.1l-.6.6c-.2.2-.2.5 0 .7 1 1.2 2.1 2.3 3.3 3.3.2.2.5.2.7 0l.6-.6c.3-.3.8-.3 1.1 0l1 1c.3.3.3.8 0 1.1l-.8.8c-.8.8-2 .9-3 .3-2.6-1.5-4.8-3.7-6.3-6.3-.6-1-.5-2.2.3-3z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-sm mb-1">WhatsApp</h3>
+                    <a
+                      href="https://wa.me/94762838796?text=Hello!%20I'm%20interested%20in%20Minneriya%20safari%20tours%20and%20would%20like%20more%20details."
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors block"
+                    >
+                      +94 76 283 8796
+                    </a>
+                  </div>
+                </div>
+
+                {/* Hours */}
                 <div className="flex items-start gap-4">
                   <div className="w-11 h-11 rounded-lg bg-[var(--color-primary)]/10 flex items-center justify-center shrink-0">
                     <svg className="w-5 h-5 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -110,7 +128,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-sm mb-1">Hours</h3>
-                    <p className="text-sm text-[var(--color-text-muted)]">
+                    <p className="text-sm text-[var(--color-text-muted)] leading-relaxed">
                       Available 7 days a week<br />
                       6:00 AM – 8:00 PM
                     </p>
