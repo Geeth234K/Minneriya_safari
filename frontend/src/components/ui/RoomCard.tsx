@@ -52,8 +52,8 @@ export default function RoomCard({ room }: RoomCardProps) {
               / night
             </span>
           </div>
-          <Link href="/rooms/reserve" className="btn btn-primary text-sm">
-            Reserve Now
+          <Link href="/contact" className="btn btn-primary text-sm">
+            Book Stay
           </Link>
         </div>
       </div>

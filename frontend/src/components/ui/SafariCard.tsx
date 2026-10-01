@@ -131,7 +131,7 @@ export default function SafariCard({
             </span>
             <span className="text-sm text-[var(--color-text-muted)] ml-1">per person</span>
           </div>
-          <Link href="/rooms/reserve" className="btn btn-primary text-sm">
+          <Link href="/contact" className="btn btn-primary text-sm">
             Book Safari
           </Link>
         </div>

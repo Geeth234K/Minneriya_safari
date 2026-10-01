@@ -270,40 +270,45 @@ export default async function AboutPage() {
         </section>
       )}
 
-      {/* ── Compact CTA with Trust Badges ── */}
-      <section className="relative py-12 md:py-16 overflow-hidden">
+      {/* ── CTA Section (Matching Home Page with User's Elephant Gathering) ── */}
+      <section className="relative min-h-[460px] md:min-h-[520px] py-20 md:py-28 flex items-center justify-center overflow-hidden">
+        {/* Background Image: 16:9 Elephant Gathering */}
         <div
-          className="absolute inset-0 bg-cover bg-center"
+          className="absolute inset-0 bg-cover"
           style={{
-            backgroundImage:
-              "url(https://images.unsplash.com/photo-1549366021-9f761d450615?auto=format&fit=crop&w=2000&q=80)",
+            backgroundImage: "url('/CTA.webp')",
+            backgroundPosition: "center 42%",
           }}
         />
-        <div
-          className="gradient-overlay absolute inset-0"
-          style={{ background: "rgba(15, 61, 27, 0.90)" }}
-        />
 
-        <div className="relative z-10 section-container text-center max-w-4xl mx-auto">
+        {/* Cinematic Vignette Overlay: Light in the middle, darker top and bottom */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/30 to-black/80" />
+
+        <div className="relative z-10 section-container text-center max-w-2xl mx-auto px-4">
+          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-black/50 backdrop-blur-md text-amber-300 border border-amber-400/40 mb-3.5 shadow-lg">
+            <span>🐘</span>
+            <span>Unforgettable Wildlife Encounters</span>
+          </span>
+
           <h2
-            className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 !text-white"
+            className="text-2xl sm:text-3xl md:text-5xl font-extrabold !text-white tracking-tight drop-shadow-2xl mb-3.5"
             style={{ fontFamily: "var(--font-heading)" }}
           >
             Ready for an Unforgettable Minneriya Safari?
           </h2>
-          <p className="text-white/80 text-sm sm:text-base mb-5 font-light max-w-lg mx-auto leading-relaxed">
+          <p className="!text-white max-w-lg mx-auto mb-6 text-sm sm:text-base md:text-lg font-light leading-relaxed drop-shadow-lg">
             Discover Sri Lanka&apos;s greatest wildlife gathering with respectful local trackers and bespoke 4x4 safaris.
           </p>
 
           {/* Prominent Trust Badges */}
           {stats && stats.items.length > 0 && (
-            <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 mb-6">
+            <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 mb-7">
               {stats.items.map((s) => (
                 <div
                   key={s.label}
-                  className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-black/30 backdrop-blur-md border border-white/25 shadow-sm text-white"
+                  className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-black/50 backdrop-blur-md border border-white/25 shadow-md text-white"
                 >
-                  <span className="text-sm sm:text-base font-extrabold text-[var(--color-accent-light)] tracking-wide">
+                  <span className="text-sm sm:text-base font-extrabold text-[#e8c372] tracking-wide">
                     {s.value}
                     {s.suffix}
                   </span>
@@ -316,18 +321,19 @@ export default async function AboutPage() {
           )}
 
           {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 max-w-md mx-auto">
             <Link
-              href="/activities/safari"
-              className="btn btn-accent btn-lg w-full sm:w-auto font-semibold shadow-lg"
+              href="/contact"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 !bg-[#d4a34a] hover:!bg-[#b8872e] !text-slate-950 font-bold px-7 py-3 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-200 text-sm sm:text-base text-center"
             >
-              Book Safari Experience
+              <span>Book Safari Now</span>
+              <span>→</span>
             </Link>
             <Link
               href="/contact"
-              className="btn btn-outline btn-lg w-full sm:w-auto !text-white !border-white/40 hover:!border-white hover:!bg-white/10"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-black/50 hover:bg-black/70 !text-white border border-white/50 backdrop-blur-md font-semibold px-7 py-3 rounded-xl transition-all duration-200 text-sm sm:text-base text-center shadow-lg"
             >
-              Contact Our Guides
+              <span>Contact Us</span>
             </Link>
           </div>
         </div>

@@ -130,13 +130,14 @@ const PILLARS = [
 export default function WhySafariWithUs() {
   const [activeMoment, setActiveMoment] = useState<SafariMoment>(SAFARI_MOMENTS[0]);
   const [isMuted, setIsMuted] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(true);
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   const handleSelectMoment = (moment: SafariMoment) => {
     setActiveMoment(moment);
     if (videoRef.current) {
       videoRef.current.src = moment.videoSrc;
-      videoRef.current.play().catch(() => {});
+      videoRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
     }
   };
 
@@ -144,6 +145,17 @@ export default function WhySafariWithUs() {
     if (videoRef.current) {
       videoRef.current.muted = !isMuted;
       setIsMuted(!isMuted);
+    }
+  };
+
+  const togglePlay = () => {
+    if (videoRef.current) {
+      if (videoRef.current.paused) {
+        videoRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
+      } else {
+        videoRef.current.pause();
+        setIsPlaying(false);
+      }
     }
   };
 
@@ -232,46 +244,83 @@ export default function WhySafariWithUs() {
           {/* Interactive Player & Reels Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
             {/* Main Featured Video Player (Col 7) */}
-            <div className="lg:col-span-7 rounded-2xl overflow-hidden bg-black relative shadow-2xl aspect-[16/10] sm:aspect-[16/9] flex items-center justify-center">
-              <video
-                ref={videoRef}
-                src={activeMoment.videoSrc}
-                poster={activeMoment.thumbnail}
-                autoPlay
-                loop
-                muted={isMuted}
-                playsInline
-                className="w-full h-full object-contain bg-neutral-950"
-              />
-
-              {/* Sound Toggle Button */}
-              <button
-                type="button"
-                onClick={toggleSound}
-                className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-black/60 hover:bg-black/90 text-white backdrop-blur-md border border-white/20 flex items-center justify-center transition-all hover:scale-105 cursor-pointer shadow-lg"
-                aria-label={isMuted ? "Unmute audio" : "Mute audio"}
+            <div className="lg:col-span-7 flex flex-col items-center">
+              {/* Video Player Container */}
+              <div
+                className="w-full max-w-[380px] lg:max-w-[420px] aspect-[4/5] sm:aspect-[9/16] max-h-[520px] rounded-2xl sm:rounded-3xl overflow-hidden bg-black relative shadow-2xl flex items-center justify-center border border-slate-800/60 cursor-pointer group"
+                onClick={togglePlay}
               >
-                {isMuted ? (
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
-                  </svg>
-                ) : (
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
-                  </svg>
-                )}
-              </button>
+                <video
+                  ref={videoRef}
+                  src={activeMoment.videoSrc}
+                  poster={activeMoment.thumbnail}
+                  autoPlay
+                  loop
+                  muted={isMuted}
+                  playsInline
+                  onPlay={() => setIsPlaying(true)}
+                  onPause={() => setIsPlaying(false)}
+                  className="w-full h-full object-cover bg-neutral-950"
+                />
 
-              {/* Bottom Video Meta Overlay */}
-              <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5 bg-gradient-to-t from-black/90 via-black/50 to-transparent text-white pointer-events-none">
-                <span className="text-[11px] font-semibold uppercase tracking-wider text-[var(--color-accent-light)]">
-                  {activeMoment.tag}
-                </span>
-                <h4 className="text-base sm:text-lg font-bold text-white mt-0.5">
+                {/* Top Overlay Bar: Live Badge & Sound Toggle */}
+                <div className="absolute top-3 inset-x-3 flex items-center justify-between z-20 pointer-events-none">
+                  {/* Reel Indicator Badge */}
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold tracking-wider uppercase bg-black/60 backdrop-blur-md text-white border border-white/15 shadow-sm">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                    Safari Reel
+                  </span>
+
+                  {/* Sound Toggle Button */}
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleSound();
+                    }}
+                    className="w-10 h-10 rounded-full bg-black/60 hover:bg-black/90 text-white backdrop-blur-md border border-white/20 flex items-center justify-center transition-all hover:scale-110 cursor-pointer shadow-lg pointer-events-auto"
+                    aria-label={isMuted ? "Unmute audio" : "Mute audio"}
+                  >
+                    {isMuted ? (
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
+                      </svg>
+                    ) : (
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                      </svg>
+                    )}
+                  </button>
+                </div>
+
+                {/* Subtle Paused Play Icon */}
+                {!isPlaying && (
+                  <div className="absolute inset-0 bg-black/40 flex items-center justify-center z-10 pointer-events-none">
+                    <div className="w-14 h-14 rounded-full bg-white/90 text-slate-900 flex items-center justify-center text-xl shadow-2xl pl-1">
+                      ▶
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* ── Video Details Card: Cleanly Underneath Video (100% Unobstructed Video) ── */}
+              <div className="w-full max-w-[380px] lg:max-w-[420px] mt-3.5 p-4 sm:p-5 rounded-2xl bg-white border border-[var(--color-border)] shadow-sm">
+                <div className="flex items-center justify-between gap-2 mb-2">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-[var(--color-primary-dark)] bg-emerald-50 px-2.5 py-0.5 rounded-md border border-emerald-100">
+                    {activeMoment.tag}
+                  </span>
+                  <span className="text-xs text-slate-400 font-medium">
+                    Duration: {activeMoment.duration}
+                  </span>
+                </div>
+                <h4
+                  className="text-base sm:text-lg font-bold text-[var(--color-text)]"
+                  style={{ fontFamily: "var(--font-heading)" }}
+                >
                   {activeMoment.title}
                 </h4>
-                <p className="text-xs sm:text-sm text-white/80 line-clamp-2 mt-1 font-light">
+                <p className="text-xs sm:text-sm text-[var(--color-text-muted)] mt-1.5 leading-relaxed font-light">
                   {activeMoment.description}
                 </p>
               </div>

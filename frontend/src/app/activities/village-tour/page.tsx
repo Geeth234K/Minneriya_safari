@@ -59,7 +59,7 @@ export default async function VillageTourPage() {
         badge="Cultural Experience"
         backgroundImage="/images/village.webp"
         backgroundPosition="center 60%"
-        primaryCta={{ label: "Book This Tour", href: "/rooms/reserve" }}
+        primaryCta={{ label: "Book This Tour", href: "/contact" }}
         compact
       />
 
@@ -183,7 +183,7 @@ export default async function VillageTourPage() {
             Immerse yourself in Sri Lankan culture with our guided village tour. 
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <Link href="/rooms/reserve" className="btn btn-accent btn-lg w-full sm:w-auto">
+            <Link href="/contact" className="btn btn-accent btn-lg w-full sm:w-auto">
               Book This Tour
             </Link>
             <Link href="/contact" className="btn btn-outline btn-lg w-full sm:w-auto">

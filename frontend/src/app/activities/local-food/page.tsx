@@ -62,7 +62,7 @@ export default async function LocalFoodPage() {
         }
         badge="Local Food Experience"
         backgroundImage="/images/localfood.webp"
-        primaryCta={{ label: "Book Experience", href: "/rooms/reserve" }}
+        primaryCta={{ label: "Book Experience", href: "/contact" }}
         compact
       />
 
@@ -161,7 +161,7 @@ export default async function LocalFoodPage() {
             Include local meals in your safari experience for an authentic culinary journey.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <Link href="/rooms/reserve" className="btn btn-accent btn-lg w-full sm:w-auto">
+            <Link href="/contact" className="btn btn-accent btn-lg w-full sm:w-auto">
               Book With Meals
             </Link>
             <Link href="/contact" className="btn btn-outline btn-lg w-full sm:w-auto">

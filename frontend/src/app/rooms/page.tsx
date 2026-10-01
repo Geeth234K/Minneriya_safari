@@ -34,7 +34,7 @@ export default async function RoomsPage() {
         subtitle="Wake up to the sounds of wildlife and enjoy comfortable accommodation just minutes from Minneriya National Park."
         badge="Eco-Lodge Accommodation"
         backgroundImage="/rooms/r4.webp"
-        primaryCta={{ label: "Reserve Your Stay", href: "/rooms/reserve" }}
+        primaryCta={{ label: "Book Your Stay", href: "/contact" }}
         compact
       />
 
@@ -143,13 +143,13 @@ export default async function RoomsPage() {
               {/* CTA Buttons */}
               <div className="pt-3 border-t border-[var(--color-border)] space-y-2.5">
                 <Link
-                  href="/rooms/reserve"
+                  href="/contact"
                   className="btn btn-primary w-full text-center py-3 text-sm sm:text-base font-bold shadow-md hover:shadow-xl transition-all"
                 >
-                  Reserve This Chalet Now
+                  Book This Chalet & Safari
                 </Link>
                 <a
-                  href="https://wa.me/94771234567?text=Hello!%20I%20would%20like%20to%20inquire%20about%20booking%20the%20Minneriya%20Safari%20Chalet."
+                  href="https://wa.me/94704881033?text=Hello!%20I%20would%20like%20to%20inquire%20about%20booking%20the%20Minneriya%20Safari%20Chalet."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn-secondary w-full text-center py-2.5 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2"
@@ -225,8 +225,8 @@ export default async function RoomsPage() {
           </div>
 
           <div className="text-center mt-10">
-            <Link href="/rooms/reserve" className="btn btn-primary btn-lg">
-              Submit Reservation Request
+            <Link href="/contact" className="btn btn-primary btn-lg">
+              Book Safari & Stay
             </Link>
           </div>
         </div>

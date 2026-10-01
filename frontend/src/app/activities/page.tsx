@@ -272,31 +272,52 @@ export default async function ActivitiesPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="section-padding bg-[var(--color-primary-dark)] text-white text-center">
-        <div className="section-container">
+      {/* ── CTA Section (Matching Home Page with User's Elephant Gathering) ── */}
+      <section className="relative min-h-[460px] md:min-h-[520px] py-20 md:py-28 flex items-center justify-center overflow-hidden">
+        {/* Background Image: 16:9 Elephant Gathering */}
+        <div
+          className="absolute inset-0 bg-cover"
+          style={{
+            backgroundImage: "url('/CTA.webp')",
+            backgroundPosition: "center 42%",
+          }}
+        />
+
+        {/* Cinematic Vignette Overlay: Light in the middle, darker top and bottom */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/30 to-black/80" />
+
+        {/* Content Container */}
+        <div className="relative z-10 section-container text-center max-w-2xl mx-auto px-4">
+          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-black/50 backdrop-blur-md text-amber-300 border border-amber-400/40 mb-3.5 shadow-lg">
+            <span>🐘</span>
+            <span>Unforgettable Wildlife Encounters</span>
+          </span>
+
           <h2
-            className="text-2xl sm:text-3xl font-bold mb-4 text-white"
+            className="text-2xl sm:text-3xl md:text-5xl font-extrabold !text-white tracking-tight drop-shadow-2xl mb-3.5"
             style={{ fontFamily: "var(--font-heading)" }}
           >
             Ready for an Adventure?
           </h2>
-          <p className="text-white/70 max-w-lg mx-auto mb-6 text-sm sm:text-base">
-            Combine safari, village tours, and local food into one unforgettable
+
+          <p className="!text-white max-w-lg mx-auto mb-7 text-sm sm:text-base md:text-lg font-light leading-relaxed drop-shadow-lg">
+            Combine safari, village tours, and traditional local food into one unforgettable
             Minneriya experience.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 max-w-md mx-auto">
             <Link
-              href="/rooms/reserve"
-              className="btn btn-accent btn-lg w-full sm:w-auto"
+              href="/contact"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 !bg-[#d4a34a] hover:!bg-[#b8872e] !text-slate-950 font-bold px-7 py-3 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-200 text-sm sm:text-base text-center"
             >
-              Book Now
+              <span>Book Safari Now</span>
+              <span>→</span>
             </Link>
             <Link
               href="/contact"
-              className="btn btn-outline btn-lg w-full sm:w-auto"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-black/50 hover:bg-black/70 !text-white border border-white/50 backdrop-blur-md font-semibold px-7 py-3 rounded-xl transition-all duration-200 text-sm sm:text-base text-center shadow-lg"
             >
-              Contact Us
+              <span>Contact Us</span>
             </Link>
           </div>
         </div>

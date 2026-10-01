@@ -49,7 +49,7 @@ export default async function SafariPage() {
         badge="Safari Experience"
         backgroundImage="/about/i3.webp"
         backgroundPosition="center 30%"
-        primaryCta={{ label: "Book Safari", href: "/rooms/reserve" }}
+        primaryCta={{ label: "Book Safari", href: "/contact" }}
         compact
       />
 
@@ -110,8 +110,8 @@ export default async function SafariPage() {
             Send us a reservation request and our team will arrange the perfect safari experience for you.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <Link href="/rooms/reserve" className="btn btn-accent btn-lg w-full sm:w-auto">
-              Book Now
+            <Link href="/contact" className="btn btn-accent btn-lg w-full sm:w-auto">
+              Book Safari
             </Link>
             <Link href="/contact" className="btn btn-outline btn-lg w-full sm:w-auto">
               Have Questions?

@@ -16,7 +16,8 @@ export default function ContactPage() {
         title="Get In Touch"
         subtitle="Have questions about our safari experiences, village tours, or accommodation? We'd love to hear from you."
         badge="Contact Us"
-        backgroundImage="https://images.unsplash.com/photo-1549366021-9f761d450615?auto=format&fit=crop&w=2000&q=80"
+        backgroundImage="/contact-hero.webp"
+        backgroundPosition="center 60%"
         compact
       />
 
@@ -24,7 +25,7 @@ export default function ContactPage() {
         <div className="section-container">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-16">
             {/* Contact Info */}
-            <div className="lg:col-span-2">
+            <div className="lg:col-span-2 order-2 lg:order-1">
               <SectionTitle
                 eyebrow="Reach Us"
                 title="Contact Information"
@@ -82,10 +83,10 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-semibold text-sm mb-1">Phone</h3>
                     <a
-                      href="tel:+94762838796"
+                      href="tel:+94704881033"
                       className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors block"
                     >
-                      +94 76 283 8796
+                      +94 70 488 1033
                     </a>
                   </div>
                 </div>
@@ -109,12 +110,12 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-semibold text-sm mb-1">WhatsApp</h3>
                     <a
-                      href="https://wa.me/94762838796?text=Hello!%20I'm%20interested%20in%20Minneriya%20safari%20tours%20and%20would%20like%20more%20details."
+                      href="https://wa.me/94704881033?text=Hello!%20I'm%20interested%20in%20Minneriya%20safari%20tours%20and%20would%20like%20more%20details."
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors block"
                     >
-                      +94 76 283 8796
+                      +94 70 488 1033
                     </a>
                   </div>
                 </div>
@@ -130,7 +131,7 @@ export default function ContactPage() {
                     <h3 className="font-semibold text-sm mb-1">Hours</h3>
                     <p className="text-sm text-[var(--color-text-muted)] leading-relaxed">
                       Available 7 days a week<br />
-                      6:00 AM – 8:00 PM
+                      24 Hours
                     </p>
                   </div>
                 </div>
@@ -138,14 +139,22 @@ export default function ContactPage() {
             </div>
 
             {/* Contact Form */}
-            <div className="lg:col-span-3">
-              <div className="bg-[var(--color-surface)] rounded-xl border border-[var(--color-border)] p-5 sm:p-8 shadow-sm">
-                <h2
-                  className="text-xl font-bold mb-6"
-                  style={{ fontFamily: "var(--font-heading)" }}
-                >
-                  Send Us a Message
-                </h2>
+            <div className="lg:col-span-3 order-1 lg:order-2">
+              <div className="bg-[var(--color-surface)] rounded-2xl border border-[var(--color-border)] p-4 sm:p-6 md:p-8 shadow-sm">
+                <div className="mb-6 pb-4 border-b border-slate-100">
+                  <span className="text-xs font-bold text-[var(--color-primary)] uppercase tracking-wider block mb-1">
+                    Instant Inquiry & Custom Itinerary
+                  </span>
+                  <h2
+                    className="text-2xl sm:text-3xl font-bold text-slate-900"
+                    style={{ fontFamily: "var(--font-heading)" }}
+                  >
+                    Build Your Safari Experience
+                  </h2>
+                  <p className="text-sm text-[var(--color-text-muted)] mt-1.5">
+                    Customize your safari adventure below and receive instant confirmation directly on WhatsApp.
+                  </p>
+                </div>
                 <ContactForm />
               </div>
             </div>
