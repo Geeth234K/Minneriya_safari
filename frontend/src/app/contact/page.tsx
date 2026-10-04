@@ -83,10 +83,10 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-semibold text-sm mb-1">Phone</h3>
                     <a
-                      href="tel:+94704881033"
+                      href="tel:+94762838796"
                       className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors block"
                     >
-                      +94 70 488 1033
+                      +94 76 283 8796
                     </a>
                   </div>
                 </div>
@@ -110,12 +110,12 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-semibold text-sm mb-1">WhatsApp</h3>
                     <a
-                      href="https://wa.me/94704881033?text=Hello!%20I'm%20interested%20in%20Minneriya%20safari%20tours%20and%20would%20like%20more%20details."
+                      href="https://wa.me/94762838796?text=Hello!%20I'm%20interested%20in%20Minneriya%20safari%20tours%20and%20would%20like%20more%20details."
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors block"
                     >
-                      +94 70 488 1033
+                      +94 76 283 8796
                     </a>
                   </div>
                 </div>

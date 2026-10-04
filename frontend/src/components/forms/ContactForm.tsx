@@ -49,7 +49,7 @@ const timeSlots = [
   { id: "flexible", label: "Flexible / Full Day", hint: "Custom timing" },
 ];
 
-const WHATSAPP_NUMBER = "94704881033";
+const WHATSAPP_NUMBER = "94762838796";
 
 interface FormData {
   fullName: string;
@@ -557,7 +557,7 @@ export default function ContactForm() {
                   if (errors.whatsapp) setErrors((p) => ({ ...p, whatsapp: "" }));
                 }}
                 className={`form-input text-sm ${errors.whatsapp ? "!border-[var(--color-error)]" : ""}`}
-                placeholder="+94 70 488 1033 or international"
+                placeholder="+94 76 283 8796 or international"
               />
             </div>
             {errors.whatsapp && <p className="form-error">{errors.whatsapp}</p>}

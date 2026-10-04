@@ -24,7 +24,7 @@ interface FormErrors {
   [key: string]: string;
 }
 
-const WHATSAPP_NUMBER = "94704881033";
+const WHATSAPP_NUMBER = "94762838796";
 
 export default function ReservationForm({ rooms }: ReservationFormProps) {
   const [formData, setFormData] = useState<FormData>({

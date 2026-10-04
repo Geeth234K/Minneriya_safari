@@ -107,12 +107,12 @@ export default function Footer() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
                 <a
-                  href="https://wa.me/94704881033?text=Hello!%20I'm%20interested%20in%20Minneriya%20safari%20tours%20and%20would%20like%20more%20details."
+                  href="https://wa.me/94762838796?text=Hello!%20I'm%20interested%20in%20Minneriya%20safari%20tours%20and%20would%20like%20more%20details."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:!text-[#e8c372] transition-colors font-semibold text-emerald-300"
                 >
-                  +94 70 488 1033
+                  +94 76 283 8796
                 </a>
               </li>
             </ul>

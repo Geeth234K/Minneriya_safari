@@ -149,7 +149,7 @@ export default async function RoomsPage() {
                   Book This Chalet & Safari
                 </Link>
                 <a
-                  href="https://wa.me/94704881033?text=Hello!%20I%20would%20like%20to%20inquire%20about%20booking%20the%20Minneriya%20Safari%20Chalet."
+                  href="https://wa.me/94762838796?text=Hello!%20I%20would%20like%20to%20inquire%20about%20booking%20a%20room%20at%20Minneriya%20Safari."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn-secondary w-full text-center py-2.5 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2"

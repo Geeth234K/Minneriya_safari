@@ -25,8 +25,8 @@ export default function Hero({
 }: HeroProps) {
   return (
     <section
-      className={`relative w-full flex items-center justify-center overflow-hidden ${
-        compact ? "min-h-[50vh] md:min-h-[55vh]" : "min-h-[85vh] md:min-h-screen"
+      className={`relative w-full flex items-center justify-center overflow-hidden pt-20 sm:pt-24 md:pt-28 pb-10 sm:pb-14 ${
+        compact ? "min-h-[460px] sm:min-h-[500px] md:min-h-[55vh]" : "min-h-[85vh] md:min-h-screen"
       }`}
     >
       {/* Background image */}
@@ -40,21 +40,21 @@ export default function Hero({
       <div className="gradient-overlay absolute inset-0" />
 
       {/* Content */}
-      <div className="relative z-10 section-container text-center text-white px-4 py-20 md:py-24">
+      <div className="relative z-10 section-container text-center text-white px-4 py-4 sm:py-8 md:py-12">
         {badge && (
-          <span className="inline-block px-4 py-1.5 mb-4 md:mb-6 text-xs md:text-sm font-semibold tracking-wider uppercase bg-white/15 backdrop-blur-sm border border-white/20 rounded-full animate-fade-in">
+          <span className="inline-block px-3.5 sm:px-4 py-1 sm:py-1.5 mb-3 sm:mb-4 md:mb-6 text-[11px] sm:text-xs md:text-sm font-semibold tracking-wider uppercase bg-white/15 backdrop-blur-sm border border-white/20 rounded-full animate-fade-in shadow-sm">
             {badge}
           </span>
         )}
 
         <h1
-          className="!text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight max-w-4xl mx-auto mb-4 md:mb-6 animate-fade-in-up drop-shadow-md"
+          className="!text-white text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight max-w-4xl mx-auto mb-3 sm:mb-4 md:mb-6 animate-fade-in-up drop-shadow-md"
           style={{ fontFamily: "var(--font-heading)", color: "#ffffff" }}
         >
           {title}
         </h1>
 
-        <p className="text-base sm:text-lg md:text-xl text-white/85 max-w-2xl mx-auto mb-6 md:mb-8 leading-relaxed animate-fade-in-up"
+        <p className="text-sm sm:text-base md:text-lg text-white/85 max-w-2xl mx-auto mb-5 sm:mb-6 md:mb-8 leading-relaxed animate-fade-in-up font-light"
           style={{ animationDelay: "0.1s" }}
         >
           {subtitle}
@@ -66,12 +66,12 @@ export default function Hero({
             style={{ animationDelay: "0.2s" }}
           >
             {primaryCta && (
-              <Link href={primaryCta.href} className="btn btn-accent btn-lg w-full sm:w-auto">
+              <Link href={primaryCta.href} className="btn btn-accent btn-md sm:btn-lg w-full sm:w-auto text-sm sm:text-base">
                 {primaryCta.label}
               </Link>
             )}
             {secondaryCta && (
-              <Link href={secondaryCta.href} className="btn btn-outline btn-lg w-full sm:w-auto">
+              <Link href={secondaryCta.href} className="btn btn-outline btn-md sm:btn-lg w-full sm:w-auto text-sm sm:text-base">
                 {secondaryCta.label}
               </Link>
             )}

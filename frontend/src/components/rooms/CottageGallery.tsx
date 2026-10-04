@@ -79,8 +79,8 @@ export default function CottageGallery() {
           onClick={() => setLightboxOpen(true)}
         />
 
-        {/* Gradient Overlay for Text Readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-black/10 pointer-events-none" />
+        {/* Gradient Overlay for Text Readability - lighter to show more photo */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/20 pointer-events-none" />
 
         {/* Badge & Caption */}
         <div className="absolute top-4 left-4 z-10">
@@ -126,17 +126,14 @@ export default function CottageGallery() {
           </button>
         </div>
 
-        {/* Bottom Description */}
+        {/* Bottom Title */}
         <div className="absolute bottom-0 inset-x-0 p-4 sm:p-6 z-10">
           <h3
-            className="text-xl sm:text-2xl font-bold !text-white mb-1 drop-shadow-md"
+            className="text-lg sm:text-2xl font-bold !text-white drop-shadow-md"
             style={{ fontFamily: "var(--font-heading)", color: "#ffffff" }}
           >
             {activePhoto.title}
           </h3>
-          <p className="text-xs sm:text-sm text-gray-200 line-clamp-2 max-w-xl drop-shadow">
-            {activePhoto.description}
-          </p>
         </div>
       </div>
 

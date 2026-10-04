@@ -75,8 +75,8 @@ export default function ActivitiesBentoGrid({
               <source src="/videos/safari-sample.webm" type="video/webm" />
             </video>
 
-            {/* Gradient Overlays for readability */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-black/25 transition-opacity duration-300" />
+            {/* Gradient Overlays for readability - subtle bottom fade only */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent transition-opacity duration-300" />
 
             {/* Top Badges & Controls */}
             <div className="relative z-10 p-5 sm:p-6 flex items-start justify-between gap-3">
@@ -84,10 +84,6 @@ export default function ActivitiesBentoGrid({
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/90 text-white shadow-sm backdrop-blur-md">
                   <span>🔥</span>
                   <span>Most Popular</span>
-                </span>
-                <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium bg-black/40 text-white/90 backdrop-blur-md border border-white/10">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  <span>Video Preview</span>
                 </span>
               </div>
 
@@ -113,44 +109,17 @@ export default function ActivitiesBentoGrid({
 
             {/* Bottom Content Area */}
             <div className="relative z-10 p-5 sm:p-7 text-white">
-              <div className="flex items-center gap-2 mb-2">
-                <span className="text-xs uppercase tracking-wider font-semibold text-[var(--color-accent-light)]">
-                  Wildlife Adventure
-                </span>
-                <span className="text-white/40">•</span>
-                <span className="text-xs text-amber-300 font-medium">★ 4.9 (140+ reviews)</span>
-              </div>
-
               <h3
-                className="text-2xl sm:text-3xl font-bold !text-white mb-2 group-hover:!text-[var(--color-accent-light)] transition-colors drop-shadow-md"
+                className="text-2xl sm:text-3xl font-bold !text-white mb-4 group-hover:!text-[var(--color-accent-light)] transition-colors drop-shadow-md"
                 style={{ fontFamily: "var(--font-heading)", color: "#ffffff" }}
               >
-                {featuredSafari?.title || safariActivity?.title || "Minneriya Jeep Safari"}
+                {featuredSafari?.title || safariActivity?.title || "Jeep Safari"}
               </h3>
 
-              <p className="text-white/80 text-sm sm:text-base line-clamp-2 max-w-xl mb-4 leading-relaxed font-light">
-                {featuredSafari?.description ||
-                  safariActivity?.shortDescription ||
-                  "Witness the legendary Gathering of wild elephants, leopards, and tropical wildlife across the scenic Minneriya grasslands."}
-              </p>
-
-              {/* Highlights Pill Tags */}
-              <div className="flex flex-wrap gap-2 mb-5">
-                <span className="px-2.5 py-1 text-xs rounded-lg bg-white/10 backdrop-blur-md text-white/90 border border-white/10">
-                  ⏱ {featuredSafari?.duration || "3–4 Hours"}
-                </span>
-                <span className="px-2.5 py-1 text-xs rounded-lg bg-white/10 backdrop-blur-md text-white/90 border border-white/10">
-                  🚙 4x4 Safari Jeep
-                </span>
-                <span className="px-2.5 py-1 text-xs rounded-lg bg-white/10 backdrop-blur-md text-white/90 border border-white/10">
-                  🐘 Elephant Gathering
-                </span>
-              </div>
-
               {/* Price & Link CTA */}
-              <div className="flex items-center justify-between pt-4 border-t border-white/15">
+              <div className="flex items-center justify-between pt-3 border-t border-white/15">
                 <div>
-                  <span className="text-xs text-white/60 block uppercase">Starting from</span>
+                  <span className="text-xs text-white/60 block uppercase font-medium tracking-wider">Starting from</span>
                   <span className="text-xl sm:text-2xl font-bold text-[var(--color-accent-light)]">
                     {featuredSafari?.discountedPrice ? `$${featuredSafari.discountedPrice}` : safariActivity?.price || "$45"}
                   </span>
@@ -203,15 +172,11 @@ export default function ActivitiesBentoGrid({
               {/* Content */}
               <div className="relative z-10 p-5 sm:p-6 text-white">
                 <h3
-                  className="text-xl sm:text-2xl font-bold mb-1.5 !text-white group-hover:!text-[var(--color-accent-light)] transition-colors drop-shadow-md"
+                  className="text-xl sm:text-2xl font-bold mb-3 !text-white group-hover:!text-[var(--color-accent-light)] transition-colors drop-shadow-md"
                   style={{ fontFamily: "var(--font-heading)", color: "#ffffff" }}
                 >
                   {villageActivity?.title || "Authentic Village Tours"}
                 </h3>
-                <p className="text-white/80 text-xs sm:text-sm line-clamp-2 mb-3 leading-relaxed font-light">
-                  {villageActivity?.shortDescription ||
-                    "Glide across tranquil lakes in a catamaran boat, ride a traditional cart, and experience genuine rural Sri Lankan hospitality."}
-                </p>
 
                 <div className="flex items-center justify-between pt-3 border-t border-white/15">
                   <span className="text-sm font-semibold text-[var(--color-accent-light)]">
@@ -259,15 +224,11 @@ export default function ActivitiesBentoGrid({
               {/* Content */}
               <div className="relative z-10 p-5 sm:p-6 text-white">
                 <h3
-                  className="text-xl sm:text-2xl font-bold mb-1.5 !text-white group-hover:!text-[var(--color-accent-light)] transition-colors drop-shadow-md"
+                  className="text-xl sm:text-2xl font-bold mb-3 !text-white group-hover:!text-[var(--color-accent-light)] transition-colors drop-shadow-md"
                   style={{ fontFamily: "var(--font-heading)", color: "#ffffff" }}
                 >
                   {foodActivity?.title || "Traditional Sri Lankan Dining"}
                 </h3>
-                <p className="text-white/80 text-xs sm:text-sm line-clamp-2 mb-3 leading-relaxed font-light">
-                  {foodActivity?.shortDescription ||
-                    "Taste aromatic curries, freshly prepared rotis, and organic tropical flavors cooked in traditional clay pots over open hearths."}
-                </p>
 
                 <div className="flex items-center justify-between pt-3 border-t border-white/15">
                   <span className="text-sm font-semibold text-[var(--color-accent-light)]">

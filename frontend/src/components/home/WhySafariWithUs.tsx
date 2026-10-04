@@ -17,6 +17,16 @@ interface SafariMoment {
 
 const SAFARI_MOMENTS: SafariMoment[] = [
   {
+    id: "m4",
+    title: "Gentle Giants Up Close",
+    tag: "Thrilling Encounter",
+    description:
+      "A peaceful herd calmly approaching the shaded jeep trail in total tranquility — pure harmony in the wild.",
+    videoSrc: "/videos/v5.mov",
+    thumbnail: "/videos/thumbs/v5.mov.webp",
+    duration: "0:14",
+  },
+  {
     id: "m1",
     title: "Stream Crossing with Our Guests",
     tag: "Guest Experience",
@@ -45,16 +55,6 @@ const SAFARI_MOMENTS: SafariMoment[] = [
     videoSrc: "/videos/v8.mov",
     thumbnail: "/videos/thumbs/v8.mov.webp",
     duration: "0:12",
-  },
-  {
-    id: "m4",
-    title: "Gentle Giants Up Close",
-    tag: "Thrilling Encounter",
-    description:
-      "A peaceful herd calmly approaching the shaded jeep trail in total tranquility — pure harmony in the wild.",
-    videoSrc: "/videos/v5.mov",
-    thumbnail: "/videos/thumbs/v5.mov.webp",
-    duration: "0:14",
   },
   {
     id: "m5",
