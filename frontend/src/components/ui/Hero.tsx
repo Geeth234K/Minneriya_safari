@@ -10,6 +10,7 @@ interface HeroProps {
   secondaryCta?: { label: string; href: string };
   highlights?: string[];
   compact?: boolean;
+  backLink?: { label: string; href: string };
 }
 
 export default function Hero({
@@ -22,6 +23,7 @@ export default function Hero({
   secondaryCta,
   highlights,
   compact = false,
+  backLink,
 }: HeroProps) {
   return (
     <section
@@ -38,6 +40,29 @@ export default function Hero({
         }}
       />
       <div className="gradient-overlay absolute inset-0" />
+
+      {/* Top-left Back link positioned neatly under navbar */}
+      {backLink && (
+        <div className="absolute top-[4.25rem] sm:top-[4.75rem] md:top-[5.25rem] left-0 right-0 z-20 pointer-events-none">
+          <div className="section-container">
+            <Link
+              href={backLink.href}
+              className="inline-flex items-center gap-1.5 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-medium text-white/90 hover:text-white bg-black/45 hover:bg-black/65 border border-white/20 backdrop-blur-md transition-all shadow-md group pointer-events-auto"
+            >
+              <svg
+                className="w-3 h-3 sm:w-3.5 sm:h-3.5 group-hover:-translate-x-0.5 transition-transform"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+              </svg>
+              {backLink.label}
+            </Link>
+          </div>
+        </div>
+      )}
 
       {/* Content */}
       <div className="relative z-10 section-container text-center text-white px-4 py-4 sm:py-8 md:py-12">

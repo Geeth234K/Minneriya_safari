@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Outfit, Cormorant_Garamond } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import FloatingWhatsApp from "@/components/ui/FloatingWhatsApp";
 import "./globals.css";
 
 const inter = Inter({
@@ -65,6 +66,7 @@ export default function RootLayout({
         <Navbar />
         <main className="min-h-screen">{children}</main>
         <Footer />
+        <FloatingWhatsApp />
       </body>
     </html>
   );

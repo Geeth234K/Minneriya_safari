@@ -28,21 +28,6 @@ export default async function SafariPage() {
 
   return (
     <>
-      {/* Back link */}
-      <div className="pt-20 pb-2 bg-[var(--color-bg)]">
-        <div className="section-container">
-          <Link
-            href="/activities"
-            className="inline-flex items-center gap-1 text-sm text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors"
-          >
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-            </svg>
-            All Activities
-          </Link>
-        </div>
-      </div>
-
       <Hero
         title="Minneriya Jeep Safari"
         subtitle="Venture deep into the wild landscapes of Minneriya and witness Sri Lanka's most magnificent wildlife in their natural habitat."
@@ -50,6 +35,7 @@ export default async function SafariPage() {
         backgroundImage="/about/i3.webp"
         backgroundPosition="center 30%"
         primaryCta={{ label: "Book Safari", href: "/contact" }}
+        backLink={{ label: "All Activities", href: "/activities" }}
         compact
       />
 
@@ -97,24 +83,51 @@ export default async function SafariPage() {
         </section>
       )}
 
-      {/* CTA */}
-      <section className="section-padding bg-[var(--color-primary-dark)] text-white text-center">
-        <div className="section-container">
+      {/* ── CTA Section (Featuring User's Elephant Gathering with Full Visibility) ── */}
+      <section className="relative min-h-[340px] md:min-h-[380px] pt-10 md:pt-14 pb-12 md:pb-14 flex items-center justify-center overflow-hidden">
+        {/* Background Image: 16:9 Elephant Gathering */}
+        <div
+          className="absolute inset-0 bg-cover"
+          style={{
+            backgroundImage: "url('/CTA.webp')",
+            backgroundPosition: "center 48%",
+          }}
+        />
+
+        {/* Cinematic Vignette Overlay: Light in the middle so the elephants stay visible, darker top and bottom */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/30 to-black/80" />
+
+        {/* Content Container */}
+        <div className="relative z-10 section-container text-center max-w-2xl mx-auto px-4">
+          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-black/50 backdrop-blur-md text-amber-300 border border-amber-400/40 mb-2.5 shadow-lg">
+            <span>🐘</span>
+            <span>Wild Safari Adventures</span>
+          </span>
+
           <h2
-            className="text-2xl sm:text-3xl font-bold mb-4 text-white"
+            className="text-2xl sm:text-3xl md:text-4xl font-extrabold !text-white tracking-tight drop-shadow-2xl mb-2.5"
             style={{ fontFamily: "var(--font-heading)" }}
           >
             Ready for the Adventure?
           </h2>
-          <p className="text-white/70 max-w-lg mx-auto mb-6 text-sm sm:text-base">
-            Send us a reservation request and our team will arrange the perfect safari experience for you.
+
+          <p className="!text-white max-w-lg mx-auto mb-6 text-sm sm:text-base font-light leading-relaxed drop-shadow-lg">
+            Send us a reservation request and our experienced safari team will arrange the perfect wildlife adventure for you.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <Link href="/contact" className="btn btn-accent btn-lg w-full sm:w-auto">
-              Book Safari
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 max-w-md mx-auto">
+            <Link
+              href="/contact"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 !bg-[#d4a34a] hover:!bg-[#b8872e] !text-slate-950 font-bold px-7 py-3 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-200 text-sm sm:text-base text-center"
+            >
+              <span>Book Safari</span>
+              <span>→</span>
             </Link>
-            <Link href="/contact" className="btn btn-outline btn-lg w-full sm:w-auto">
-              Have Questions?
+            <Link
+              href="/contact"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-black/50 hover:bg-black/70 !text-white border border-white/50 backdrop-blur-md font-semibold px-7 py-3 rounded-xl transition-all duration-200 text-sm sm:text-base text-center shadow-lg"
+            >
+              <span>Have Questions?</span>
             </Link>
           </div>
         </div>

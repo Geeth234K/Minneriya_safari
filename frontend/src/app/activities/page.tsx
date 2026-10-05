@@ -177,10 +177,7 @@ export default async function ActivitiesPage() {
 
                   {/* Header content & badges */}
                   <div className="absolute inset-0 p-5 flex flex-col justify-between z-10 pointer-events-none">
-                    <div className="flex items-center justify-between">
-                      <span className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-md border border-white/20 flex items-center justify-center text-xl shadow-sm">
-                        {card.icon}
-                      </span>
+                    <div className="flex items-center justify-end">
                       {/* Interactive arrow button */}
                       <div className="w-8 h-8 rounded-full bg-black/40 backdrop-blur-md border border-white/20 flex items-center justify-center text-white group-hover:bg-[var(--color-accent)] group-hover:text-[var(--color-primary-dark)] transition-all">
                         <svg
@@ -272,14 +269,14 @@ export default async function ActivitiesPage() {
         </div>
       </section>
 
-      {/* ── CTA Section (Matching Home Page with User's Elephant Gathering) ── */}
-      <section className="relative min-h-[460px] md:min-h-[520px] py-20 md:py-28 flex items-center justify-center overflow-hidden">
+      {/* ── CTA Section (Matching Sub-Activities Compact Cinematic Size) ── */}
+      <section className="relative min-h-[340px] md:min-h-[380px] pt-10 md:pt-14 pb-12 md:pb-14 flex items-center justify-center overflow-hidden">
         {/* Background Image: 16:9 Elephant Gathering */}
         <div
           className="absolute inset-0 bg-cover"
           style={{
             backgroundImage: "url('/CTA.webp')",
-            backgroundPosition: "center 42%",
+            backgroundPosition: "center 48%",
           }}
         />
 
@@ -288,19 +285,19 @@ export default async function ActivitiesPage() {
 
         {/* Content Container */}
         <div className="relative z-10 section-container text-center max-w-2xl mx-auto px-4">
-          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-black/50 backdrop-blur-md text-amber-300 border border-amber-400/40 mb-3.5 shadow-lg">
+          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-black/50 backdrop-blur-md text-amber-300 border border-amber-400/40 mb-2.5 shadow-lg">
             <span>🐘</span>
             <span>Unforgettable Wildlife Encounters</span>
           </span>
 
           <h2
-            className="text-2xl sm:text-3xl md:text-5xl font-extrabold !text-white tracking-tight drop-shadow-2xl mb-3.5"
+            className="text-2xl sm:text-3xl md:text-4xl font-extrabold !text-white tracking-tight drop-shadow-2xl mb-2.5"
             style={{ fontFamily: "var(--font-heading)" }}
           >
             Ready for an Adventure?
           </h2>
 
-          <p className="!text-white max-w-lg mx-auto mb-7 text-sm sm:text-base md:text-lg font-light leading-relaxed drop-shadow-lg">
+          <p className="!text-white max-w-lg mx-auto mb-6 text-sm sm:text-base font-light leading-relaxed drop-shadow-lg">
             Combine safari, village tours, and traditional local food into one unforgettable
             Minneriya experience.
           </p>
