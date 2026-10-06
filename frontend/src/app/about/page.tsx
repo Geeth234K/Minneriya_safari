@@ -120,12 +120,13 @@ export default async function AboutPage() {
                     : null);
 
                 const featureLink =
-                  f.link ||
-                  (f.icon === "wildlife"
+                  f.link && f.link !== "/about"
+                    ? f.link
+                    : f.icon === "wildlife"
                     ? "/activities/safari"
                     : f.icon === "village"
                     ? "/activities/village-tour"
-                    : "/activities");
+                    : "/activities";
 
                 return (
                   <Link
@@ -143,13 +144,6 @@ export default async function AboutPage() {
                           className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-70 group-hover:opacity-40 transition-opacity" />
-                        <span className="absolute top-3 right-3 w-9 h-9 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-base shadow-sm border border-white/15">
-                          {f.icon === "lion" && "🦁"}
-                          {f.icon === "wildlife" && "🐘"}
-                          {f.icon === "village" && "🏘️"}
-                          {f.icon === "sunrise" && "🌅"}
-                          {!["lion", "wildlife", "village", "sunrise"].includes(f.icon) && "✨"}
-                        </span>
                       </div>
                     ) : (
                       <div className="w-14 h-14 mx-auto mt-6 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center">

@@ -99,7 +99,7 @@ const defaultAboutData = {
         description: "Climb the legendary staircase to panoramic views and ancient frescoes.",
         icon: "lion",
         image: "/highlight-rock.webp",
-        link: "/about"
+        link: "/activities"
       },
       {
         title: "Wildlife Safaris",
@@ -251,7 +251,7 @@ router.get("/", async (req, res) => {
       }
 
       const featureImageMap = {
-        lion: { image: "/highlight-rock.webp", link: "/about" },
+        lion: { image: "/highlight-rock.webp", link: "/activities" },
         wildlife: { image: "/highlight-safari.webp", link: "/activities/safari" },
         village: { image: "/highlight-village.webp", link: "/activities/village-tour" },
         sunrise: { image: "/highlight-sunrise.webp", link: "/activities" }
