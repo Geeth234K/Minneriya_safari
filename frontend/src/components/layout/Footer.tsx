@@ -141,12 +141,15 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-12 pt-6 border-t border-white/15 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="!text-slate-200 text-xs">
+        <div className="mt-12 pt-6 border-t border-white/15 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+          <p className="!text-slate-200">
             &copy; {new Date().getFullYear()} Minneriya Safari. All rights reserved.
           </p>
-          <p className="!text-slate-200 text-xs">
-            Minneriya, Sri Lanka &mdash; Wildlife &amp; Hospitality
+          <p className="!text-slate-200 flex items-center gap-1.5">
+            <span>Crafted with passion by</span>
+            <span className="font-semibold text-amber-400 hover:text-amber-300 transition-colors tracking-wide">
+              Ceylonix
+            </span>
           </p>
         </div>
       </div>

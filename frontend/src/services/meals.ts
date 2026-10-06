@@ -1,6 +1,6 @@
-import { apiFetch } from "./api";
 import type { Meal } from "@/types";
+import { mealsData } from "@/data/meals";
 
 export async function getMeals(): Promise<Meal[]> {
-  return apiFetch<Meal[]>("/meals");
+  return mealsData;
 }
