@@ -82,7 +82,7 @@ export default async function RoomsPage() {
                     ${price}
                   </span>
                   <span className="text-sm text-[var(--color-text-muted)] ml-1.5">
-                    / night
+                    / Full Day
                   </span>
                 </div>
                 <div className="flex items-center gap-1.5 flex-wrap">

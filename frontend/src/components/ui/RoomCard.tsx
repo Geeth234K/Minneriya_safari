@@ -49,7 +49,7 @@ export default function RoomCard({ room }: RoomCardProps) {
               ${room.pricePerNight}
             </span>
             <span className="text-sm text-[var(--color-text-muted)] ml-1">
-              / night
+              / Full Day
             </span>
           </div>
           <Link href="/contact" className="btn btn-primary text-sm">

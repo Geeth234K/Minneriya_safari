@@ -46,7 +46,7 @@ export default function Navbar() {
             <div className="relative w-9 h-9 sm:w-10 sm:h-10 shrink-0 group-hover:scale-105 transition-transform duration-200">
               <Image
                 src="/logo-mark.webp"
-                alt="Minneriya Safari Logo"
+                alt="Minneriya Eco Safari Logo"
                 fill
                 className="object-contain drop-shadow-sm"
                 priority
@@ -59,7 +59,7 @@ export default function Navbar() {
                 }`}
                 style={{ fontFamily: "var(--font-heading)" }}
               >
-                Minneriya Safari
+                Minneriya Eco Safari
               </span>
               <span
                 className={`text-[9px] sm:text-[10px] tracking-widest uppercase font-semibold transition-colors duration-300 ${
@@ -149,7 +149,7 @@ export default function Navbar() {
             <div className="relative w-9 h-9 shrink-0">
               <Image
                 src="/logo-mark.webp"
-                alt="Minneriya Safari Logo"
+                alt="Minneriya Eco Safari Logo"
                 fill
                 className="object-contain"
                 priority
@@ -160,7 +160,7 @@ export default function Navbar() {
                 className="font-bold text-base text-[var(--color-primary-dark)] leading-tight"
                 style={{ fontFamily: "var(--font-heading)" }}
               >
-                Minneriya Safari
+                Minneriya Eco Safari
               </span>
               <span className="text-[10px] text-amber-600 font-semibold tracking-wider uppercase">
                 Wildlife & Tours

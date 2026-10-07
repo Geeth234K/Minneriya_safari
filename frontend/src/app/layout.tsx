@@ -26,12 +26,13 @@ const cormorant = Cormorant_Garamond({
 
 export const metadata: Metadata = {
   title: {
-    default: "Minneriya Safari | Wild Sri Lankan Adventures",
-    template: "%s | Minneriya Safari",
+    default: "Minneriya Eco Safari | Wild Sri Lankan Adventures",
+    template: "%s | Minneriya Eco Safari",
   },
   description:
-    "Experience the wild beauty of Minneriya with authentic jeep safaris, village tours, local cuisine, and comfortable accommodation in the heart of Sri Lanka.",
+    "Experience the wild beauty of Minneriya with authentic eco jeep safaris, village tours, local cuisine, and comfortable accommodation in the heart of Sri Lanka.",
   keywords: [
+    "Minneriya Eco Safari",
     "Minneriya Safari",
     "Sri Lanka Safari",
     "Minneriya National Park",
@@ -44,10 +45,10 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    siteName: "Minneriya Safari",
-    title: "Minneriya Safari | Wild Sri Lankan Adventures",
+    siteName: "Minneriya Eco Safari",
+    title: "Minneriya Eco Safari | Wild Sri Lankan Adventures",
     description:
-      "Experience the wild beauty of Minneriya with authentic jeep safaris, village tours, local cuisine, and comfortable accommodation.",
+      "Experience the wild beauty of Minneriya with authentic eco jeep safaris, village tours, local cuisine, and comfortable accommodation.",
   },
 };
 

@@ -22,7 +22,7 @@ export default function Footer() {
               <div className="relative w-11 h-11 shrink-0 group-hover:scale-105 transition-transform duration-200">
                 <Image
                   src="/logo-mark.webp"
-                  alt="Minneriya Safari Logo"
+                  alt="Minneriya Eco Safari Logo"
                   fill
                   className="object-contain"
                 />
@@ -32,10 +32,10 @@ export default function Footer() {
                   className="font-bold text-xl text-white leading-tight"
                   style={{ fontFamily: "var(--font-heading)" }}
                 >
-                  Minneriya Safari
+                  Minneriya Eco Safari
                 </span>
                 <span className="text-[10px] text-amber-300 font-semibold tracking-widest uppercase">
-                  Wildlife Expeditions
+                  Wildlife & Tours
                 </span>
               </div>
             </Link>
@@ -127,7 +127,7 @@ export default function Footer() {
               Ready to Explore?
             </h3>
             <p className="!text-slate-100 text-sm mb-5 leading-relaxed">
-              Book your Minneriya Safari adventure today and create memories
+              Book your Minneriya Eco Safari adventure today and create memories
               that last a lifetime.
             </p>
             <Link
@@ -143,7 +143,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="mt-12 pt-6 border-t border-white/15 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
           <p className="!text-slate-200">
-            &copy; {new Date().getFullYear()} Minneriya Safari. All rights reserved.
+            &copy; {new Date().getFullYear()} Minneriya Eco Safari. All rights reserved.
           </p>
           <p className="!text-slate-200 flex items-center gap-1.5">
             <span>Crafted with passion by</span>

@@ -55,7 +55,9 @@ interface FormData {
   fullName: string;
   email: string;
   whatsapp: string;
+  dateMode: "single" | "range";
   date: string;
+  endDate: string;
   timeSlot: string;
   guests: number;
   message: string;
@@ -67,13 +69,15 @@ interface FormErrors {
 }
 
 export default function ContactForm() {
-  const today = new Date().toISOString().split("T")[0];
+  const today = new Intl.DateTimeFormat("en-CA").format(new Date());
 
   const [formData, setFormData] = useState<FormData>({
     fullName: "",
     email: "",
     whatsapp: "",
+    dateMode: "single",
     date: "",
+    endDate: "",
     timeSlot: "afternoon",
     guests: 2,
     message: "",
@@ -90,7 +94,12 @@ export default function ContactForm() {
       const next = exists
         ? prev.interests.filter((item) => item !== id)
         : [...prev.interests, id];
-      return { ...prev, interests: next.length > 0 ? next : [id] };
+      const shouldSwitchToRange = !exists && id === "Accommodation" && prev.dateMode === "single";
+      return {
+        ...prev,
+        interests: next.length > 0 ? next : [id],
+        dateMode: shouldSwitchToRange ? "range" : prev.dateMode,
+      };
     });
   };
 
@@ -116,6 +125,18 @@ export default function ContactForm() {
     return Object.keys(newErrors).length === 0;
   };
 
+  const calculateDays = (start: string, end: string): number => {
+    if (!start || !end) return 1;
+    try {
+      const d1 = new Date(start + "T00:00:00").getTime();
+      const d2 = new Date(end + "T00:00:00").getTime();
+      const diff = Math.round((d2 - d1) / (1000 * 60 * 60 * 24)) + 1;
+      return diff > 0 ? diff : 1;
+    } catch {
+      return 1;
+    }
+  };
+
   const formatPreferredDate = (dateStr: string): string => {
     if (!dateStr) return "Flexible / To be decided";
     try {
@@ -128,6 +149,20 @@ export default function ContactForm() {
     } catch {
       return dateStr;
     }
+  };
+
+  const formatScheduleText = (): string => {
+    if (formData.dateMode === "range") {
+      if (formData.date && formData.endDate) {
+        const days = calculateDays(formData.date, formData.endDate);
+        return `${formatPreferredDate(formData.date)} to ${formatPreferredDate(formData.endDate)} (${days} ${days === 1 ? "Day" : "Days"})`;
+      }
+      if (formData.date) {
+        return `Starting ${formatPreferredDate(formData.date)} (Multi-day Tour)`;
+      }
+      return "Multi-day / Flexible dates";
+    }
+    return formatPreferredDate(formData.date);
   };
 
   const experienceTitleMap: Record<string, string> = {
@@ -155,7 +190,7 @@ export default function ContactForm() {
 
     return (
       `━━━━━━━━━━━━━━━━━━━━\n` +
-      `🐘 *MINNERIYA SAFARI & TOURS*\n` +
+      `🐘 *MINNERIYA ECO SAFARI & TOURS*\n` +
       `     *New Booking Inquiry*\n` +
       `━━━━━━━━━━━━━━━━━━━━\n\n` +
       `👤 *Guest Details:*\n` +
@@ -163,15 +198,15 @@ export default function ContactForm() {
       `• WhatsApp: ${formData.whatsapp.trim()}\n` +
       emailLine +
       `\n` +
-      `📅 *Safari Schedule:*\n` +
-      `• Preferred Date: ${formatPreferredDate(formData.date)}\n` +
-      `• Shift: ${selectedSlot}\n` +
+      `📅 *Tour Schedule:*\n` +
+      `• Dates: ${formatScheduleText()}\n` +
+      `• Preferred Shift: ${selectedSlot}\n` +
       `• Travelers: ${formData.guests} Guests\n\n` +
       `🎯 *Experiences Selected:*\n` +
       `${experiencesList}\n\n` +
       notesSection +
       `━━━━━━━━━━━━━━━━━━━━\n` +
-      `_Minneriya Safari & Tours • Sigiriya, Sri Lanka_`
+      `_Minneriya Eco Safari & Tours • Sigiriya, Sri Lanka_`
     );
   };
 
@@ -192,7 +227,7 @@ export default function ContactForm() {
       // Handled via the prominent WhatsApp button on the success view
     }
 
-    // Backup to backend MongoDB in background
+    // Backup to backend MongoDB in background (non-blocking)
     try {
       const guestPassword = `guest_${Date.now()}_${Math.random().toString(36).slice(2)}`;
       const safeEmail =
@@ -222,17 +257,23 @@ export default function ContactForm() {
       }
 
       if (userId) {
+        const checkInIso = formData.date ? new Date(formData.date).toISOString() : new Date().toISOString();
+        const checkOutIso =
+          formData.dateMode === "range" && formData.endDate
+            ? new Date(formData.endDate).toISOString()
+            : checkInIso;
+
         await createBooking({
           userId,
           bookingType: "itinerary",
           fullName: formData.fullName,
           email: safeEmail,
           whatsapp: formData.whatsapp,
-          checkInDate: formData.date ? new Date(formData.date).toISOString() : new Date().toISOString(),
-          checkOutDate: formData.date ? new Date(formData.date).toISOString() : new Date().toISOString(),
+          checkInDate: checkInIso,
+          checkOutDate: checkOutIso,
           guests: formData.guests,
           interests: formData.interests,
-          requests: `[Slot: ${formData.timeSlot}] ${formData.message}`.trim(),
+          requests: `[Slot: ${formData.timeSlot}] [Mode: ${formData.dateMode}] ${formData.message}`.trim(),
         });
       }
     } catch (err) {
@@ -317,7 +358,9 @@ export default function ContactForm() {
                 fullName: "",
                 email: "",
                 whatsapp: "",
+                dateMode: "single",
                 date: "",
+                endDate: "",
                 timeSlot: "afternoon",
                 guests: 2,
                 message: "",
@@ -427,62 +470,185 @@ export default function ContactForm() {
 
       {/* ── STEP 2: TIMING & TRAVELERS ── */}
       <div className="pt-2 border-t border-slate-100">
-        <span className="text-xs font-bold text-[var(--color-primary)] tracking-widest uppercase block mb-1">
-          Step 2
-        </span>
-        <h3 className="text-base sm:text-lg font-bold text-slate-800 mb-3">
-          Date & Travelers
-        </h3>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-          {/* Preferred Date */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
           <div>
-            <label htmlFor="exp-date" className="block text-xs font-medium text-slate-700 mb-1.5">
-              Preferred Safari Date
-            </label>
-            <input
-              id="exp-date"
-              type="date"
-              min={today}
-              value={formData.date}
-              onChange={(e) => setFormData((prev) => ({ ...prev, date: e.target.value }))}
-              className="form-input text-sm !py-2.5"
-            />
+            <span className="text-xs font-bold text-[var(--color-primary)] tracking-widest uppercase block mb-0.5">
+              Step 2
+            </span>
+            <h3 className="text-base sm:text-lg font-bold text-slate-800">
+              Safari Schedule & Travelers
+            </h3>
           </div>
 
-          {/* Number of Travelers Counter */}
-          <div>
-            <label className="block text-xs font-medium text-slate-700 mb-1.5">
-              Number of Travelers
-            </label>
-            <div className="flex items-center justify-between border border-[var(--color-border)] rounded-lg bg-[var(--color-surface)] px-2.5 sm:px-3 py-1.5">
-              <span className="text-xs text-[var(--color-text-muted)] font-medium">
-                Travelers:
-              </span>
-              <div className="flex items-center gap-2 sm:gap-3">
-                <button
-                  type="button"
-                  onClick={() => updateGuests(-1)}
-                  disabled={formData.guests <= 1}
-                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-md bg-slate-100 hover:bg-slate-200 disabled:opacity-40 font-bold flex items-center justify-center text-slate-700 transition-colors"
-                >
-                  −
-                </button>
-                <span className="text-sm sm:text-base font-bold text-slate-900 w-5 sm:w-6 text-center">
-                  {formData.guests}
+          {/* Date Mode Toggle Pill */}
+          <div className="inline-flex p-1 bg-slate-100 rounded-lg text-xs font-medium self-start sm:self-auto border border-slate-200/60">
+            <button
+              type="button"
+              onClick={() => setFormData((p) => ({ ...p, dateMode: "single" }))}
+              className={`px-3 py-1.5 rounded-md transition-all flex items-center gap-1.5 ${
+                formData.dateMode === "single"
+                  ? "bg-white text-slate-900 shadow-xs font-semibold"
+                  : "text-slate-600 hover:text-slate-900"
+              }`}
+            >
+              <span>Single Day</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setFormData((p) => ({ ...p, dateMode: "range" }))}
+              className={`px-3 py-1.5 rounded-md transition-all flex items-center gap-1.5 ${
+                formData.dateMode === "range"
+                  ? "bg-white text-slate-900 shadow-xs font-semibold"
+                  : "text-slate-600 hover:text-slate-900"
+              }`}
+            >
+              <span>Multi-Day / Range</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Date Inputs based on Date Mode */}
+        {formData.dateMode === "single" ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+            {/* Preferred Safari Date */}
+            <div>
+              <div className="flex items-center justify-between mb-1.5">
+                <label htmlFor="exp-date" className="block text-xs font-medium text-slate-700">
+                  Preferred Safari Date
+                </label>
+                <span className="text-[10px] text-slate-400">Optional</span>
+              </div>
+              <input
+                id="exp-date"
+                type="date"
+                min={today}
+                value={formData.date}
+                onChange={(e) => setFormData((prev) => ({ ...prev, date: e.target.value }))}
+                className="form-input text-sm !py-2.5"
+              />
+            </div>
+
+            {/* Travelers Counter */}
+            <div>
+              <label className="block text-xs font-medium text-slate-700 mb-1.5">
+                Number of Travelers
+              </label>
+              <div className="flex items-center justify-between border border-[var(--color-border)] rounded-lg bg-[var(--color-surface)] px-2.5 sm:px-3 py-1.5">
+                <span className="text-xs text-[var(--color-text-muted)] font-medium">
+                  Travelers:
                 </span>
-                <button
-                  type="button"
-                  onClick={() => updateGuests(1)}
-                  disabled={formData.guests >= 25}
-                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-md bg-slate-100 hover:bg-slate-200 disabled:opacity-40 font-bold flex items-center justify-center text-slate-700 transition-colors"
-                >
-                  +
-                </button>
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <button
+                    type="button"
+                    onClick={() => updateGuests(-1)}
+                    disabled={formData.guests <= 1}
+                    className="w-7 h-7 sm:w-8 sm:h-8 rounded-md bg-slate-100 hover:bg-slate-200 disabled:opacity-40 font-bold flex items-center justify-center text-slate-700 transition-colors"
+                  >
+                    −
+                  </button>
+                  <span className="text-sm sm:text-base font-bold text-slate-900 w-5 sm:w-6 text-center">
+                    {formData.guests}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => updateGuests(1)}
+                    disabled={formData.guests >= 25}
+                    className="w-7 h-7 sm:w-8 sm:h-8 rounded-md bg-slate-100 hover:bg-slate-200 disabled:opacity-40 font-bold flex items-center justify-center text-slate-700 transition-colors"
+                  >
+                    +
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        ) : (
+          <div className="space-y-3 mb-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {/* Start Date */}
+              <div>
+                <label htmlFor="exp-start-date" className="block text-xs font-medium text-slate-700 mb-1.5">
+                  Start Date / Arrival
+                </label>
+                <input
+                  id="exp-start-date"
+                  type="date"
+                  min={today}
+                  value={formData.date}
+                  onChange={(e) => {
+                    const newStart = e.target.value;
+                    setFormData((prev) => {
+                      const newEnd = prev.endDate && prev.endDate < newStart ? newStart : prev.endDate;
+                      return { ...prev, date: newStart, endDate: newEnd };
+                    });
+                  }}
+                  className="form-input text-sm !py-2.5"
+                />
+              </div>
+
+              {/* End Date */}
+              <div>
+                <label htmlFor="exp-end-date" className="block text-xs font-medium text-slate-700 mb-1.5">
+                  End Date / Departure
+                </label>
+                <input
+                  id="exp-end-date"
+                  type="date"
+                  min={formData.date || today}
+                  value={formData.endDate}
+                  onChange={(e) => setFormData((prev) => ({ ...prev, endDate: e.target.value }))}
+                  className="form-input text-sm !py-2.5"
+                />
+              </div>
+            </div>
+
+            {/* Duration Indicator Badge */}
+            {formData.date && formData.endDate && (
+              <div className="flex items-center gap-2 text-xs text-emerald-800 bg-emerald-50 border border-emerald-200/80 rounded-lg px-3 py-2">
+                <span className="font-bold">✨ Tour Duration:</span>
+                <span className="font-semibold">
+                  {calculateDays(formData.date, formData.endDate)} {calculateDays(formData.date, formData.endDate) === 1 ? "Day" : "Days"}
+                </span>
+                <span className="text-slate-300">|</span>
+                <span className="text-[11px] text-emerald-700">
+                  {formatPreferredDate(formData.date)} → {formatPreferredDate(formData.endDate)}
+                </span>
+              </div>
+            )}
+
+            {/* Travelers Counter in Multi-Day */}
+            <div className="sm:max-w-xs">
+              <label className="block text-xs font-medium text-slate-700 mb-1.5">
+                Number of Travelers
+              </label>
+              <div className="flex items-center justify-between border border-[var(--color-border)] rounded-lg bg-[var(--color-surface)] px-2.5 sm:px-3 py-1.5">
+                <span className="text-xs text-[var(--color-text-muted)] font-medium">
+                  Travelers:
+                </span>
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <button
+                    type="button"
+                    onClick={() => updateGuests(-1)}
+                    disabled={formData.guests <= 1}
+                    className="w-7 h-7 sm:w-8 sm:h-8 rounded-md bg-slate-100 hover:bg-slate-200 disabled:opacity-40 font-bold flex items-center justify-center text-slate-700 transition-colors"
+                  >
+                    −
+                  </button>
+                  <span className="text-sm sm:text-base font-bold text-slate-900 w-5 sm:w-6 text-center">
+                    {formData.guests}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => updateGuests(1)}
+                    disabled={formData.guests >= 25}
+                    className="w-7 h-7 sm:w-8 sm:h-8 rounded-md bg-slate-100 hover:bg-slate-200 disabled:opacity-40 font-bold flex items-center justify-center text-slate-700 transition-colors"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Time slot chips */}
         <div>
@@ -609,7 +775,11 @@ export default function ContactForm() {
           </div>
           <div>
             {formData.interests.length} Experiences • {formData.guests} Traveler(s)
-            {formData.date ? ` • ${formData.date}` : ""}
+            {formData.dateMode === "range" && formData.date && formData.endDate
+              ? ` • ${calculateDays(formData.date, formData.endDate)} Days (${formatPreferredDate(formData.date)} → ${formatPreferredDate(formData.endDate)})`
+              : formData.date
+              ? ` • ${formatPreferredDate(formData.date)}`
+              : ""}
           </div>
         </div>
 

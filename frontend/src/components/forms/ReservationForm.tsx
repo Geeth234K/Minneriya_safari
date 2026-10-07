@@ -115,7 +115,7 @@ export default function ReservationForm({ rooms }: ReservationFormProps) {
       `• Travelers: ${formData.guests} Guests\n\n` +
       specialReq +
       `━━━━━━━━━━━━━━━━━━━━\n` +
-      `_Minneriya Safari & Tours • Sigiriya, Sri Lanka_`;
+      `_Minneriya Eco Safari & Tours • Sigiriya, Sri Lanka_`;
 
     const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(messageText)}`;
     setSubmittedWhatsAppUrl(whatsappUrl);
@@ -370,7 +370,7 @@ export default function ReservationForm({ rooms }: ReservationFormProps) {
           {rooms.length === 0 && <option value="">No rooms available</option>}
           {rooms.map((room) => (
             <option key={room._id} value={room._id}>
-              {room.name} — ${room.pricePerNight}/night
+              {room.name} — ${room.pricePerNight} / Full Day
             </option>
           ))}
         </select>
