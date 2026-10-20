@@ -3,6 +3,7 @@ import { Inter, Outfit, Cormorant_Garamond } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import FloatingWhatsApp from "@/components/ui/FloatingWhatsApp";
+import { LocalBusinessJsonLd } from "@/components/seo/JsonLd";
 import "./globals.css";
 
 const inter = Inter({
@@ -68,6 +69,7 @@ export default function RootLayout({
           fontFamily: "var(--font-inter), var(--font-body)",
         }}
       >
+        <LocalBusinessJsonLd />
         <Navbar />
         <main className="min-h-screen">{children}</main>
         <Footer />

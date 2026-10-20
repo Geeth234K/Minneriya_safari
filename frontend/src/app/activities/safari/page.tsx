@@ -4,12 +4,20 @@ import SectionTitle from "@/components/ui/SectionTitle";
 import SafariCard from "@/components/ui/SafariCard";
 import { EmptyState, ErrorState } from "@/components/ui/States";
 import { getSafaris } from "@/services/safaris";
+import { SafariTripJsonLd } from "@/components/seo/JsonLd";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Safari",
+  title: "Minneriya Jeep Safari & Elephant Gathering Tours",
   description:
-    "Book an unforgettable jeep safari in Minneriya. Spot elephants, leopards, deer, and exotic birds with experienced local guides.",
+    "Book an unforgettable private 4x4 jeep safari in Minneriya National Park. Witness wild elephant gatherings, leopards, deer, and exotic birds with certified native trackers. Free hotel pickup.",
+  keywords: [
+    "Minneriya Safari",
+    "Minneriya Jeep Safari",
+    "Minneriya National Park Safari",
+    "Elephant Gathering Minneriya",
+    "Sri Lanka Safari Tour",
+  ],
 };
 
 export default async function SafariPage() {
@@ -28,6 +36,7 @@ export default async function SafariPage() {
 
   return (
     <>
+      <SafariTripJsonLd />
       <Hero
         title="Minneriya Jeep Safari"
         subtitle="Venture deep into the wild landscapes of Minneriya and witness Sri Lanka's most magnificent wildlife in their natural habitat."

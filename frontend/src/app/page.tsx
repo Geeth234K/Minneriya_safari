@@ -3,6 +3,7 @@ import HeroFullscreen from "@/components/home/HeroFullscreen";
 import SectionTitle from "@/components/ui/SectionTitle";
 import ActivitiesBentoGrid from "@/components/home/ActivitiesBentoGrid";
 import WhySafariWithUs from "@/components/home/WhySafariWithUs";
+import { FaqJsonLd, SafariTripJsonLd } from "@/components/seo/JsonLd";
 import { getSafaris } from "@/services/safaris";
 import { getActivities } from "@/services/activities";
 import type { Safari, Activity } from "@/types";
@@ -24,6 +25,10 @@ export default async function HomePage() {
 
   return (
     <>
+      {/* ── Structured SEO Rich Snippets ── */}
+      <FaqJsonLd />
+      <SafariTripJsonLd />
+
       {/* ── Hero Fullscreen ── */}
       <HeroFullscreen />
 
