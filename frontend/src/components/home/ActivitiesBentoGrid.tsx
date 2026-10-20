@@ -151,6 +151,8 @@ export default function ActivitiesBentoGrid({
                 src="/images/village.webp"
                 alt={villageActivity?.title || "Minneriya Village Tour"}
                 fill
+                priority
+                quality={70}
                 sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover object-[center_60%] transition-transform duration-700 ease-out group-hover:scale-105"
               />
@@ -203,6 +205,7 @@ export default function ActivitiesBentoGrid({
                 src="/images/localfood.webp"
                 alt={foodActivity?.title || "Traditional Sri Lankan Dining"}
                 fill
+                quality={70}
                 sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               />
