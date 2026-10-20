@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import SectionTitle from "@/components/ui/SectionTitle";
@@ -16,7 +16,27 @@ export default function ActivitiesBentoGrid({
   safaris = [],
 }: ActivitiesBentoGridProps) {
   const [isMainMuted, setIsMainMuted] = useState(true);
+  const [isVideoInView, setIsVideoInView] = useState(false);
   const mainVideoRef = useRef<HTMLVideoElement | null>(null);
+  const videoCardRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setIsVideoInView(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "250px" }
+    );
+
+    if (videoCardRef.current) {
+      observer.observe(videoCardRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   // Active safari from backend if available
   const featuredSafari = safaris.find((s) => s.isActive) || safaris[0];
@@ -60,7 +80,10 @@ export default function ActivitiesBentoGrid({
           {/* ═══════════════════════════════════════════
               CARD 1: JEEP SAFARI (Main Featured - Col 7)
              ═══════════════════════════════════════════ */}
-          <div className="lg:col-span-7 group relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 min-h-[460px] sm:min-h-[520px] lg:min-h-[580px] flex flex-col justify-between border border-white/20">
+          <div
+            ref={videoCardRef}
+            className="lg:col-span-7 group relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 min-h-[460px] sm:min-h-[520px] lg:min-h-[580px] flex flex-col justify-between border border-white/20"
+          >
             {/* Background Video */}
             <video
               ref={mainVideoRef}
@@ -68,11 +91,16 @@ export default function ActivitiesBentoGrid({
               loop
               muted={isMainMuted}
               playsInline
+              preload="none"
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               poster="/videos/thumbs/v1.mov.webp"
             >
-              <source src="/videos/v1.mov" type="video/mp4" />
-              <source src="/videos/safari-sample.webm" type="video/webm" />
+              {isVideoInView && (
+                <>
+                  <source src="/videos/v1.mov" type="video/mp4" />
+                  <source src="/videos/safari-sample.webm" type="video/webm" />
+                </>
+              )}
             </video>
 
             {/* Gradient Overlays for readability - subtle bottom fade only */}

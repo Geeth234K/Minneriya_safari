@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import SectionTitle from "@/components/ui/SectionTitle";
@@ -131,7 +131,33 @@ export default function WhySafariWithUs() {
   const [activeMoment, setActiveMoment] = useState<SafariMoment>(SAFARI_MOMENTS[0]);
   const [isMuted, setIsMuted] = useState(true);
   const [isPlaying, setIsPlaying] = useState(true);
+  const [isInView, setIsInView] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setIsInView(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "300px" }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (isInView && videoRef.current) {
+      videoRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
+    }
+  }, [isInView]);
 
   const handleSelectMoment = (moment: SafariMoment) => {
     setActiveMoment(moment);
@@ -247,17 +273,19 @@ export default function WhySafariWithUs() {
             <div className="lg:col-span-7 flex flex-col items-center">
               {/* Video Player Container */}
               <div
+                ref={containerRef}
                 className="w-full max-w-[380px] lg:max-w-[420px] aspect-[4/5] sm:aspect-[9/16] max-h-[520px] rounded-2xl sm:rounded-3xl overflow-hidden bg-black relative shadow-2xl flex items-center justify-center border border-slate-800/60 cursor-pointer group"
                 onClick={togglePlay}
               >
                 <video
                   ref={videoRef}
-                  src={activeMoment.videoSrc}
+                  src={isInView ? activeMoment.videoSrc : undefined}
                   poster={activeMoment.thumbnail}
-                  autoPlay
+                  autoPlay={isInView}
                   loop
                   muted={isMuted}
                   playsInline
+                  preload="none"
                   onPlay={() => setIsPlaying(true)}
                   onPause={() => setIsPlaying(false)}
                   className="w-full h-full object-cover bg-neutral-950"

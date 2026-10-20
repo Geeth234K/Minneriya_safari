@@ -48,6 +48,7 @@ export default function Navbar() {
                 src="/logo-mark.webp"
                 alt="Minneriya Eco Safari Logo"
                 fill
+                sizes="40px"
                 className="object-contain drop-shadow-sm"
                 priority
               />

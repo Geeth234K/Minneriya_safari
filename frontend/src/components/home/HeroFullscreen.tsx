@@ -11,6 +11,7 @@ export default function HeroFullscreen() {
           alt="Gentle Giants at Minneriya National Park"
           fill
           priority
+          quality={75}
           sizes="100vw"
           className="object-cover object-[center_35%] md:object-[center_38%]"
         />
