@@ -19,7 +19,7 @@ const outfit = Outfit({
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "600"],
   variable: "--font-serif-luxury",
   display: "swap",
 });
@@ -58,7 +58,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${outfit.variable} ${cormorant.variable}`}>
+    <html
+      lang="en"
+      data-scroll-behavior="smooth"
+      className={`${inter.variable} ${outfit.variable} ${cormorant.variable}`}
+    >
       <body
         style={{
           fontFamily: "var(--font-inter), var(--font-body)",

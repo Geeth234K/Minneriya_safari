@@ -24,6 +24,7 @@ export default function Footer() {
                   src="/logo-mark.webp"
                   alt="Minneriya Eco Safari Logo"
                   fill
+                  sizes="44px"
                   className="object-contain"
                 />
               </div>

@@ -30,7 +30,7 @@ export default function HeroFullscreen() {
       {/* Top Section: Heading & Subtitle in the Sky */}
       <div className="absolute top-[13%] sm:top-[14%] md:top-[16%] inset-x-0 z-10 text-center px-4 max-w-4xl mx-auto flex flex-col items-center">
         <h1
-          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal tracking-[0.08em] uppercase leading-[1.18] animate-fade-in-up"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal tracking-[0.08em] uppercase leading-[1.18]"
           style={{
             fontFamily: "var(--font-serif-luxury), 'Cormorant Garamond', Georgia, serif",
             color: "#ffffff",
@@ -43,11 +43,10 @@ export default function HeroFullscreen() {
         </h1>
 
         <p
-          className="text-xs sm:text-sm md:text-base font-light tracking-wide max-w-lg mt-3 md:mt-4 leading-relaxed animate-fade-in-up"
+          className="text-xs sm:text-sm md:text-base font-light tracking-wide max-w-lg mt-3 md:mt-4 leading-relaxed"
           style={{
             color: "rgba(255, 255, 255, 0.95)",
             textShadow: "0 1px 12px rgba(0, 0, 0, 0.7)",
-            animationDelay: "0.15s",
           }}
         >
           Experience the unique and intimate bond of elephants in their natural habitat.
@@ -58,14 +57,13 @@ export default function HeroFullscreen() {
       <div className="absolute bottom-[28%] sm:bottom-[29%] md:bottom-[28%] inset-x-0 z-10 flex justify-center px-4">
         <Link
           href="/activities"
-          className="group inline-flex items-center justify-center px-7 sm:px-9 py-3 sm:py-3.5 rounded-full text-xs sm:text-sm font-semibold tracking-[0.18em] uppercase text-white transition-all duration-300 hover:scale-105 active:scale-95 animate-fade-in-up"
+          className="group inline-flex items-center justify-center px-7 sm:px-9 py-3 sm:py-3.5 rounded-full text-xs sm:text-sm font-semibold tracking-[0.18em] uppercase text-white transition-all duration-300 hover:scale-105 active:scale-95"
           style={{
             background: "rgba(18, 22, 20, 0.65)",
             backdropFilter: "blur(10px)",
             WebkitBackdropFilter: "blur(10px)",
             border: "1.5px solid rgba(212, 163, 74, 0.8)",
             boxShadow: "0 4px 20px rgba(0, 0, 0, 0.4)",
-            animationDelay: "0.25s",
           }}
         >
           <span className="transition-colors duration-200 group-hover:text-[var(--color-accent-light)]">
