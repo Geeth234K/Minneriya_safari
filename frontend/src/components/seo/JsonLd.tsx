@@ -1,7 +1,7 @@
 export function LocalBusinessJsonLd() {
   const schema = {
     "@context": "https://schema.org",
-    "@type": ["TravelAgency", "TouristInformationCenter", "LocalBusiness"],
+    "@type": "TravelAgency",
     "@id": "https://minneriyaecosafari.com/#organization",
     "name": "Minneriya Eco Safari",
     "alternateName": [
@@ -11,11 +11,7 @@ export function LocalBusinessJsonLd() {
     ],
     "url": "https://minneriyaecosafari.com",
     "logo": "https://minneriyaecosafari.com/logo-full.webp",
-    "image": [
-      "https://minneriyaecosafari.com/safari-hero-elephant.webp",
-      "https://minneriyaecosafari.com/CTA.webp",
-      "https://minneriyaecosafari.com/images/village.webp",
-    ],
+    "image": "https://minneriyaecosafari.com/safari-hero-elephant.webp",
     "description":
       "Official eco-friendly jeep safari tours in Minneriya National Park, Sri Lanka. Experience the legendary elephant gathering, custom 4x4 open-top safaris, authentic village tours, traditional local food, and nature accommodation.",
     "telephone": "+94762838796",
@@ -73,13 +69,6 @@ export function LocalBusinessJsonLd() {
     "sameAs": [
       "https://wa.me/94762838796",
     ],
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "reviewCount": "184",
-      "bestRating": "5",
-      "worstRating": "1",
-    },
   };
 
   return (
@@ -147,37 +136,39 @@ export function FaqJsonLd() {
 }
 
 export function SafariTripJsonLd() {
-  const tripSchema = {
+  const productSchema = {
     "@context": "https://schema.org",
-    "@type": "TouristTrip",
+    "@type": "Product",
     "name": "Minneriya National Park Elephant Gathering Jeep Safari",
+    "image": "https://minneriyaecosafari.com/safari-hero-elephant.webp",
     "description":
-      "Private 4x4 open-top jeep safari to witness wild Asian elephants in their natural habitat at Minneriya National Park.",
-    "touristType": ["Wildlife Enthusiasts", "Photographers", "Families", "Nature Lovers"],
-    "provider": {
-      "@type": "TravelAgency",
+      "Private 4x4 open-top jeep safari to witness wild Asian elephants in their natural habitat at Minneriya National Park, Sri Lanka.",
+    "brand": {
+      "@type": "Brand",
       "name": "Minneriya Eco Safari",
-      "url": "https://minneriyaecosafari.com",
     },
     "offers": {
       "@type": "Offer",
-      "price": "40.00",
-      "priceCurrency": "USD",
-      "availability": "https://schema.org/InStock",
       "url": "https://minneriyaecosafari.com/activities/safari",
+      "priceCurrency": "USD",
+      "price": "40.00",
+      "priceValidUntil": "2027-12-31",
+      "itemCondition": "https://schema.org/NewCondition",
+      "availability": "https://schema.org/InStock",
     },
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": "4.9",
       "reviewCount": "184",
       "bestRating": "5",
+      "worstRating": "1",
     },
   };
 
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(tripSchema) }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
     />
   );
 }
