@@ -8,13 +8,6 @@ export default function MealCard({ meal }: MealCardProps) {
   return (
     <div className="bg-[var(--color-surface)] rounded-xl p-5 border border-[var(--color-border)] hover:shadow-md transition-shadow duration-300">
       <div className="flex items-start gap-4">
-        <div className="w-12 h-12 rounded-lg bg-[var(--color-accent)]/10 flex items-center justify-center shrink-0">
-          <span className="text-2xl">
-            {meal.icon === "breakfast" && "🍳"}
-            {meal.icon === "lunch" && "🍚"}
-            {!["breakfast", "lunch"].includes(meal.icon) && "🍽️"}
-          </span>
-        </div>
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-1">
             <h3

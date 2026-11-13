@@ -3,6 +3,7 @@ import HeroFullscreen from "@/components/home/HeroFullscreen";
 import SectionTitle from "@/components/ui/SectionTitle";
 import ActivitiesBentoGrid from "@/components/home/ActivitiesBentoGrid";
 import WhySafariWithUs from "@/components/home/WhySafariWithUs";
+import GuestReviews from "@/components/home/GuestReviews";
 import { FaqJsonLd, SafariTripJsonLd } from "@/components/seo/JsonLd";
 import { getSafaris } from "@/services/safaris";
 import { getActivities } from "@/services/activities";
@@ -50,6 +51,9 @@ export default async function HomePage() {
 
       {/* ── The Minneriya Difference: Why Safari With Us & Real Wild Moments ── */}
       <WhySafariWithUs />
+
+      {/* ── Guest Reviews & Testimonials ── */}
+      <GuestReviews />
 
       {/* ── CTA Section (Featuring User's Elephant Gathering with Full Visibility) ── */}
       <section className="relative min-h-[460px] md:min-h-[520px] py-20 md:py-28 flex items-center justify-center overflow-hidden">

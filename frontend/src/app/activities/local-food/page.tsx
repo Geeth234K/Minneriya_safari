@@ -112,15 +112,14 @@ export default async function LocalFoodPage() {
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
             {[
-              { emoji: "🌾", title: "Farm Fresh", desc: "Ingredients sourced from local farms and gardens." },
-              { emoji: "🍛", title: "Traditional Recipes", desc: "Time-honored Sri Lankan cooking methods and spices." },
-              { emoji: "👨‍🍳", title: "Home Cooked", desc: "Prepared with care in our own kitchen, not a restaurant." },
+              { title: "Farm Fresh", desc: "Ingredients sourced from local farms and gardens." },
+              { title: "Traditional Recipes", desc: "Time-honored Sri Lankan cooking methods and spices." },
+              { title: "Home Cooked", desc: "Prepared with care in our own kitchen, not a restaurant." },
             ].map((item) => (
               <div
                 key={item.title}
                 className="text-center p-6 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)]"
               >
-                <span className="text-4xl block mb-3">{item.emoji}</span>
                 <h3
                   className="font-bold mb-2"
                   style={{ fontFamily: "var(--font-heading)" }}
